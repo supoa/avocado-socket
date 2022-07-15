@@ -21,7 +21,7 @@
   font-weight: bold;
 }
 
-.wrapper .logo  span {
+.wrapper .logo span {
   color: rgb(251, 0, 251);
 }
 .wrapper ul {
@@ -45,34 +45,8 @@
   color: white;
 }
 
-@media (max-width: 570px) {
-  .wrapper {
-    display: none;
-  }
-  .mobile__wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    max-height: 10vh;
-    background-color: black;
-    color: aqua;
-    min-width: 100%;
-    padding: 10px 15px;
-
-    position: fixed;
-  }
-
-  .menu__items {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: black;
-    height: 100vh;
-    z-index: 99;
-  }
-
-  .menu__items ul li {
-    padding: 10px;
-  }
+.right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }

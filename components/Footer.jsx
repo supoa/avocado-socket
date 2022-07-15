@@ -5,7 +5,7 @@ import CopyrightIcon from "@mui/icons-material/Copyright";
 
 const Footer = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="footer">
       <div className={styles.grid}>
         {" "}
         <div className={styles.left}>

@@ -1,48 +1,121 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/Contact.module.css";
-const UpateProfile = ({ setOpen }) => {
+import axios from "axios";
+
+const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
+  const [profile, setProfile] = useState(profileData);
+  console.log(profileData);
+
+  const handleSubmitLogin = async () => {
+    console.log({ ...profile });
+    try {
+      const { data } = await axios.put(
+        `/api/admin/${profileData._id}`,
+        profile,
+        {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        }
+      );
+
+      setProfileData((prev) => ({ ...prev, ...data }));
+      // localStorage.setItem("userInfo", JSON.stringify(data));
+      setOpen(false);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       className={styles.wrapper}
       style={{
         background: "rgb(0,0,0,0.6)",
-        maxWidth: "350px",
+
+        // maxWidth: "370px",
+        paddingTop: "250px",
+        paddingBottom: "50px",
+        minWidth: "370px",
+        maxHeight: "80vh",
+        overflowY: "scroll",
       }}
     >
-      <h1>Updating Your Account</h1>
-      <form className={styles.form}>
+      <h2>Updating Your Account</h2>
+      <form
+        className={styles.form}
+        // style={{ maxHeight: "80vh", overflowY: "scroll" }}
+      >
         <input
           type="text"
           placeholder="Name"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setProfile({ ...profile, name: e.target.value })}
         />
 
         <input
           type="email"
           placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
         />
-        <input
-          type="text"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="NID"
-          onChange={(e) => setNid(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Submit Binance Trc20 (usdt)"
-          onChange={(e) => setPaymentMethod(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Country"
-          onChange={(e) => setCountry(e.target.value)}
-        />
-        <div className={styles.btn}>Update Account</div>
+        <input type="file" placeholder="Image" />
+        {userInfo.isAdmin && (
+          <>
+            <input
+              type="text"
+              placeholder="NID"
+              onChange={(e) => setProfile({ ...profile, Nid: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Joined"
+              onChange={(e) => setProfile({ ...profile, Join: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Purchase"
+              onChange={(e) =>
+                setProfile({ ...profile, Purchase: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              placeholder="Country"
+              onChange={(e) =>
+                setProfile({ ...profile, country: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              placeholder="revenue"
+              onChange={(e) =>
+                setProfile({ ...profile, revenue: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              placeholder="teamMembers"
+              onChange={(e) =>
+                setProfile({ ...profile, teamMembers: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              placeholder="totalAsset"
+              onChange={(e) =>
+                setProfile({ ...profile, totalAsset: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              placeholder="paymentHistory"
+              onChange={(e) =>
+                setProfile({ ...profile, paymentHistory: e.target.value })
+              }
+            />
+          </>
+        )}
+        <div className={styles.btn} onClick={() => handleSubmitLogin()}>
+          Update Account
+        </div>
         <div className={styles.btn__cancel} onClick={() => setOpen(false)}>
           Cancel
         </div>

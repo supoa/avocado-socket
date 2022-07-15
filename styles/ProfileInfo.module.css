@@ -29,13 +29,15 @@
 }
 
 .profile__btn {
-  padding: 5px;
+  padding: 5px 10px;
   background-color: blue;
   border-radius: 15px;
   max-width: 200px;
   text-align: center;
   cursor: pointer;
 }
+
+
 
 .box {
   display: grid;
@@ -69,7 +71,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color:rgb(36, 35, 35,0.2);
+  background-color: rgb(36, 35, 35, 0.2);
 }
 
 @media (max-width: 768px) {

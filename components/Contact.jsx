@@ -3,7 +3,7 @@ import styles from "../styles/Contact.module.css";
 
 const Contact = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="contact">
       <h1>Get in touch</h1>
       <form className={styles.form}>
         <input type="text" placeholder="Name" />

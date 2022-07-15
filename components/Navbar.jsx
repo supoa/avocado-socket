@@ -1,69 +1,84 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "../styles/Navbar.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
-  const [user, setUser] = useState(null);
-
+  const userInfo = useSelector((state) => state.user.userInfo);
+  const router = useRouter();
   const [open, setOpen] = useState(false);
-
-  useEffect(async () => {
-    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    userInfo && setUser(userInfo);
-  }, []);
+  console.log(router);
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} id="home">
         <div className={styles.logo}>
           Ava
           <span>cado</span>
         </div>
         <div className={styles.mid}>
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>Footer</li>
+            <li
+              onClick={() => router.push("/")}
+              style={{ color: `${router.asPath == "/" ? "white" : ""}` }}
+            >
+              Home
+            </li>
+            <li
+              onClick={() => router.push("/#about")}
+              style={{ color: `${router.asPath == "/#about" ? "white" : ""}` }}
+            >
+              About
+            </li>
+            <li
+              onClick={() => router.push("/#contact")}
+              style={{
+                color: `${router.asPath == "/#contact" ? "white" : ""}`,
+              }}
+            >
+              Contact
+            </li>
+            <li
+              onClick={() => router.push("/#footer")}
+              style={{ color: `${router.asPath == "/#footer" ? "white" : ""}` }}
+            >
+              {" "}
+              Footer
+            </li>
           </ul>
         </div>
         <div className={styles.right}>
-          {user ? (
+          {!userInfo ? (
             <>
-              <div className={styles.item}>Login</div>
-              <div className={styles.item}>Register</div>
+              <div
+                className={styles.item}
+                onClick={() => router.push("/login")}
+                style={{ color: `${router.asPath == "/login" ? "white" : ""}` }}
+              >
+                Login
+              </div>
+              <div
+                className={styles.item}
+                onClick={() => router.push("/register")}
+                style={{
+                  color: `${router.asPath == "/register" ? "white" : ""}`,
+                }}
+              >
+                Register
+              </div>
             </>
           ) : (
-            <div className={styles.item}>Profile</div>
+            <div
+              className={styles.item}
+              onClick={() => router.push(`/profile/${userInfo._id}`)}
+              style={{
+                color: `${router.route == "/profile/[id]" ? "white" : ""}`,
+              }}
+            >
+              Profile
+            </div>
           )}
-        </div>
-      </div>
-
-      <div className={styles.mobile__wrapper}>
-        <div className={styles.logo}>
-          Ava
-          <span>c</span>
-          ado
-        </div>
-        <div className={styles.menu}>#</div>
-        <div className={styles.menu__items}>
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-            {user ? (
-              <>
-                {" "}
-                <li>Login</li>
-                <li>Register</li>
-              </>
-            ) : (
-              <>
-                <li>Profile</li>
-                <li>Logout</li>
-              </>
-            )}
-          </ul>
         </div>
       </div>
     </>

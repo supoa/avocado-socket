@@ -5,6 +5,11 @@ import styles from "../styles/Table.module.css";
 const Table = () => {
   return (
     <div className={styles.table__container}>
+      <input
+        type="text"
+        className={styles.field}
+        placeholder="Search User by name"
+      />
       <table className={styles.table}>
         <tr>
           <th>User</th>
