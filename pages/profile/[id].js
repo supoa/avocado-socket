@@ -5,14 +5,14 @@ import ProfilePost from "../../components/ProfiePost";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 const Profile = () => {
-  const userInfo = useSelector((state) => state.user.userInfo);
+  // const userInfo = useSelector((state) => state.user.userInfo);
   const router = useRouter();
-  
-  // useEffect(() => {
-  //   if (!userInfo) {
-  //     router.push("/login");
-  //   }
-  // }, []);
+  const userInfo = false;
+  useEffect(() => {
+    if (!userInfo) {
+      router.push("/login");
+    }
+  }, []);
 
   return (
     <div className={styles.wrapper}>

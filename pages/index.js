@@ -25,7 +25,7 @@ export default function Home() {
         <Header />
         <About />
         <Plan />
-        {/* <Contact /> */}
+        <Contact />
       </main>
 
       <footer className={styles.footer}></footer>

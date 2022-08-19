@@ -1,109 +1,52 @@
 .wrapper {
-  /* padding: 50px; */
   display: flex;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
+  flex-direction: column;
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgb(36, 36, 36), rgb(0, 0, 0));
-  color: aquamarine;
+}
+
+.wrapper::after {
+  content: "";
+  background-color: rgb(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  position: absolute;
 }
 
 .wrapper h1 {
-  z-index: 1;
+  z-index: 555;
 }
 
-.wrapper .flex {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 15px;
-  margin: 10px 0;
-  background-color: rgb(0, 0, 0, 0.5);
-  border-radius: 15px;
-  min-width: 250px;
-  padding: 7px;
-  z-index: 3;
-  color: aqua;
+.wrapper .container {
+  z-index: 888888;
 }
-
-.flex div {
-  text-align: center;
-  cursor: pointer;
-}
-
-.flex div:hover {
-  color: white;
-}
-
 .wrapper form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  z-index: 3;
+  gap: 10px;
+  min-width: 300px;
+  z-index: 555;
 }
 
 .wrapper form input,
 .wrapper form textarea {
   padding: 7px;
-  border-radius: 10px;
-  border: 1px solid rgb(50, 50, 50);
-  min-width: 250px;
-  background: rgb(0, 0, 0, 0.1);
-  box-shadow: 2px 2px 2px 2px rgb(2, 2, 2);
-  color: aquamarine;
+  background: transparent;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  z-index: 555;
+}
+
+.wrapper form input:hover,
+.wrapper form textarea:hover {
+  border: 1px solid var(--secondary);
 }
 
 .wrapper form textarea {
   height: 20vh;
-}
-
-.btn,
-.btn__cancel {
-  text-align: center;
-  background: linear-gradient(90deg, rgb(15, 6, 79), rgb(10, 10, 131));
-  border: 1px solid rgb(0, 0, 153);
-  color: aqua;
-  padding: 5px;
-  border-radius: 15px;
-  cursor: pointer;
-}
-
-.btn__cancel {
-  background: linear-gradient(
-    90deg,
-    rgb(244, 136, 136, 0.3),
-    rgb(10, 10, 131.3)
-  );
-
-  color: red;
-}
-
-.btn:hover,
-.btn__cancel:hover {
-  color: white;
-}
-
-.circle1,
-.circle2 {
-  position: absolute;
-  border-radius: 50%;
-  width: 45%;
-  max-width: 250px;
-  aspect-ratio: 1/1;
-  /* background: linear-gradient(90deg, lightgrey, grey); */
-}
-
-.circle1 {
-  top: -10px;
-  right: -50px;
-  background: linear-gradient(45deg, rgb(8, 8, 8), rgb(57, 49, 49));
-}
-
-.circle2 {
-  bottom: -10px;
-  left: -50px;
-  background: linear-gradient(45deg, rgb(64, 53, 53), rgb(7, 7, 7));
+  resize: none;
 }

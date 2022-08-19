@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <div className={styles.navbar}>
       <div className={styles.nav__logo} onClick={() => router.push("/")}>
-        Crypto<span>C</span>ade
+        Avo<span>Cado</span>
       </div>
       <div className={styles.nav__items}>
         <div className={styles.item} onClick={() => router.push("/")}>
@@ -24,7 +24,10 @@ const Navbar = () => {
         <div className={styles.item} onClick={() => router.push("/#price")}>
           Pricing
         </div>
-        <div className={styles.item} onClick={() => router.push("/#architecture")}>
+        <div
+          className={styles.item}
+          onClick={() => router.push("/#architecture")}
+        >
           Services
         </div>
         <div className={styles.item} onClick={() => router.push("/#news")}>

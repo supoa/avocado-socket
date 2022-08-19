@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import styles from "../styles/Contact.module.css";
+import styles from "../styles/Auth.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
-
 
 const Login = () => {
   const router = useRouter();
@@ -20,7 +19,6 @@ const Login = () => {
     }
 
     try {
-
       const { data } = await axios.post("/api/login", {
         email,
         password,
@@ -32,44 +30,35 @@ const Login = () => {
       console.log(error);
     }
   };
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.flex}>
-        <Link href="/login">
-          <div
-            className={styles.router}
-            style={{ color: `${router.asPath == "/login" ? "white" : ""}` }}
-          >
-            Login
-          </div>
-        </Link>
-
-        <Link href="/register">
-          <div
-            className={styles.router}
-            style={{ color: `${router.asPath == "/register" ? "white" : ""}` }}
-          >
-            Register
-          </div>
-        </Link>
-      </div>
-      <form className={styles.form}>
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div className={styles.btn} onClick={() => handleSubmit()}>
-          Log in
+      <div className={styles.box}>
+        <div className={styles.top}>
+          <h2>
+            Welcome To <span>HYLIPLAB</span>
+          </h2>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus
+            distinctio deserunt impedit similique debitis voluptatum enim.
+          </p>
         </div>
-      </form>
-      <div className={styles.circle1}></div>
-      <div className={styles.circle2}></div>
+        <form className={styles.form__container}>
+          <h3>Login</h3>
+          {/* <label>User Name</label> */}
+          <input type="text" placeholder="Enter user name" />
+          {/* <label>User Name</label> */}
+          <input type="text" placeholder="Enter user name" />
+          <div className={styles.flex}>
+            {" "}
+            <btn>Login Now</btn>
+            <div className={styles.link}>
+              Have not Account ?{" "}
+              <span onClick={() => router.push("/register")}>Sign Up</span>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
