@@ -1,31 +1,71 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Table.module.css";
+import { motion } from "framer-motion";
 
-const Table = () => {
+const Table = ({ users }) => {
+  const [query, setQuery] = useState("");
+
   return (
     <div className={styles.table__container}>
       <input
         type="text"
         className={styles.field}
         placeholder="Search User by name"
+        onChange={(e) => setQuery(e.target.value)}
       />
       <table className={styles.table}>
-        <tr>
+        <motion.tr
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            transition: { duration: 0.5 },
+          }}
+        >
           <th>User</th>
           <th>Email</th>
-          <th>County</th>
-        </tr>
-        {[1, 2, 3, 33, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 33, , 3].map((item) => (
-          <tr className={styles.row}>
-            <td>
-              <Image src="/images/google.png" width={30} height={30} alt="" />
-              <span>User Name</span>
-            </td>
-            <td>usertest@gmail.com</td>
-            <td>Banglades</td>
-          </tr>
-        ))}
+          {/* <th>NID</th>
+          <th>JOIN</th>
+          <th>Payment History</th> */}
+
+          <th>Country</th>
+          {/* <th>Revinue</th>
+          <th>Direct Member</th>
+          <th>Team Member</th>
+          <th>Total Assets</th>
+          <th>Purchase</th> */}
+        </motion.tr>
+        {users
+          .filter((user) =>
+            user.name.toLowerCase().includes(query.toLowerCase())
+          )
+          .map((user) => (
+            <motion.tr
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                transition: { duration: 0.8 },
+              }}
+              className={styles.row}
+            >
+              <td>
+                {user.picture && (
+                  <Image src={user?.picture} width={30} height={30} alt="" />
+                )}
+                <span>{user.name}</span>
+              </td>
+              <td>{user.email}</td>
+              {/* <td>{user.Nid}</td>
+              <td>{user.Join}</td>
+              <td>{user.paymentHistory}</td> */}
+              <td>{user.country}</td>
+              {/* <td>{user.revenue}</td>
+              <td>{user.teamMembers}</td>
+              <td>{user.totalAsset}</td>
+              <td>{user.Purchase}</td> */}
+            </motion.tr>
+          ))}
       </table>
     </div>
   );

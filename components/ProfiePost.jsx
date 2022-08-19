@@ -1,19 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/ProfilePost.module.css";
 import Image from "next/image";
-
-// import {
-//   getStorage,
-//   ref,
-//   uploadBytesResumable,
-//   getDownloadURL,
-// } from "firebase/storage";
+import axios from "axios";
 
 const ProfiePost = () => {
   const [error, setError] = useState("");
   const [imageUrl, setImgUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [posts, setPosts] = useState([]);
+
+  const fetch = async () => {
+    try {
+      const { data } = await axios.get("/api/profile");
+      setPosts(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetch();
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -27,11 +35,14 @@ const ProfiePost = () => {
       </div>
       {open && (
         <div className={styles.posts}>
-          {[1, 2, 2, 2, 2].map((item) => (
-            <div className={styles.post}>
-              <Image src="/images/google.png" width={270} height={260} alt="" />
-            </div>
-          ))}
+          {posts.length > 0 &&
+            posts.map((post) => (
+              <div className={styles.post}>
+                {post.content && (
+                  <Image src={post.content} width="200px" height="200px" />
+                )}
+              </div>
+            ))}
         </div>
       )}
     </div>

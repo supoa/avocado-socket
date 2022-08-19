@@ -1,27 +1,39 @@
 import React from "react";
 import styles from "../styles/Header.module.css";
 import Image from "next/image";
-
+import { motion } from "framer-motion";
 const Header = () => {
   return (
     <div
       className={styles.wrapper}
       style={{
-        backgroundImage: "url('/images/crypto1.jpg')",
+        backgroundImage:
+          "url('https://template.viserlab.com/hyiplab/demo/assets/images/bg/hero.jpg')",
         backgroundSize: "fill",
         backgroundPosition: "center",
       }}
     >
-      <div className={styles.left}>
-        <h1>Your Success Our Vission</h1>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{
+          opacity: 1,
+          transition: { duration: 1 },
+        }}
+        className={styles.left}
+      >
+        <h1>
+          Invest for Future in Stable Platform <span>and Make Fast Money</span>
+        </h1>
 
         <p>
-          Send a message to the mail address to view all the documents of the
-          plan/purchase process issue.If you face any problem immediately mail
-          us
+          Invest in an Industry Leader, Professional, and Reliable Company. We
+          provide you with the most necessary features that will make your
+          experience better. Not only we guarantee the fastest and the most
+          exciting returns on your investments, but we also guarantee the
+          security of your investment.
         </p>
-        <div className={styles.btn}>Join Us</div>
-      </div>
+        <btn className={styles.btn}>Join Us</btn>
+      </motion.div>
       <div className={styles.right}>
         {/* <Image
           src="/images/crypto1.jpg"

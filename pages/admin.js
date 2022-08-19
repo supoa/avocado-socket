@@ -5,6 +5,7 @@ import axios from "axios";
 
 const Admin = () => {
   const [connections, setConnections] = useState();
+  const [users, setUsers] = useState([]);
 
   const makeConnection = async () => {
     try {
@@ -25,15 +26,25 @@ const Admin = () => {
     }
   };
 
+  const fetchProfiles = async () => {
+    try {
+      const { data } = await axios.get("/api/admin");
+      setUsers(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     makeConnection();
     fetchConnection();
+    fetchProfiles();
   }, []);
 
   return (
     <div className={styles.wrapper}>
       <h1>Welcome To Your Dashboard</h1>
-      <Table />
+      <Table users={users} setUsers={setUsers} />
       <div className={styles.circle1}></div>
       <div className={styles.circle2}></div>
     </div>

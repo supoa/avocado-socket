@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
     picture: { type: String },
     country: { type: String, required: true },
     revenue: { type: String },
-    directMember: { type: String },
+    revenue: { type: String },
     teamMembers: { type: String },
     totalAsset: { type: String },
     Purchase: { type: String },

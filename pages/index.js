@@ -9,6 +9,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 import Contact from "../components/Contact";
+import About from "../components/About";
+import Plan from "../components/Plan";
 
 export default function Home() {
   return (
@@ -21,7 +23,9 @@ export default function Home() {
 
       <main className={styles.main}>
         <Header />
-        <Contact />
+        <About />
+        <Plan />
+        {/* <Contact /> */}
       </main>
 
       <footer className={styles.footer}></footer>

@@ -1,0 +1,29 @@
+.wrapper {
+  text-align: center;
+}
+
+.image__container {
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-column-gap: 15px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 45px 0;
+}
+
+.image__container img {
+}
+
+.image__wrapper {
+  border-radius: 15px;
+  border: 1px solid gold;
+  box-shadow: 3px 3px 3px 3px rgb(71, 62, 2);
+  overflow: hidden;
+}
+
+.image__wrapper:hover {
+  transform: scale(1.01);
+}

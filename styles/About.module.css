@@ -1,0 +1,23 @@
+.wrapper {
+  padding: 15px;
+  padding-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  min-height: 70vh;
+  background: linear-gradient(180deg, rgb(0, 0, 0), rgb(0, 0, 112));
+  width: 100%;
+  color: var(--font);
+  z-index: 2;
+}
+
+.right {
+  max-width: 50%;
+}
+
+@media (max-width: 480px) {
+  .right {
+    max-width: 100%;
+  }
+}

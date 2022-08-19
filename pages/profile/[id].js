@@ -8,11 +8,11 @@ const Profile = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const router = useRouter();
   
-  useEffect(() => {
-    if (!userInfo) {
-      router.push("/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!userInfo) {
+  //     router.push("/login");
+  //   }
+  // }, []);
 
   return (
     <div className={styles.wrapper}>
