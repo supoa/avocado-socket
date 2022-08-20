@@ -9,9 +9,20 @@ import { useRouter } from "next/router";
 
 const ProfileInfo = ({ userInfo }) => {
   const [open, setOpen] = useState(false);
-  const [profileData, setProfileData] = useState(null);
+  const [profileData, setProfileData] = useState({
+    name: "Nahid Hasan",
+    rank: "Director",
+    country: "Bangladesh",
+    package: "5000 $",
+    revenue: "598 $",
+    team: "testuser1 testuser 2",
+    email: "nahidhasan@gmail.com",
+    join: "32/23/2033",
+    nid: "85098250280958320",
+    teamEarning: "$533",
+  });
   const dispatch = useDispatch();
-  const router  = useRouter();
+  const router = useRouter();
 
   const fetchProfileInfo = async () => {
     try {
@@ -27,9 +38,9 @@ const ProfileInfo = ({ userInfo }) => {
     }
   };
 
-  useEffect(() => {
-    fetchProfileInfo();
-  }, []);
+  // useEffect(() => {
+  //   fetchProfileInfo();
+  // }, []);
 
   return (
     <>
@@ -42,15 +53,13 @@ const ProfileInfo = ({ userInfo }) => {
               height="200px"
               alt=""
             />
+            <div className={styles.photo__wrapper}></div>
           </div>
           <div className={styles.profile__name}>{profileData.name}</div>
           <div className={styles.profile__email}> {profileData.email} </div>
-          <div className={styles.profile__btn} onClick={() => setOpen(true)}>
-            Update Your Profile
-          </div>
+          <btn onClick={() => setOpen(true)}>Update Your Profile</btn>
           <div
             className={styles.profile__btn}
-            style={{ color: "red", background: "rgb(255,0,0,0.2)" }}
             onClick={() => {
               dispatch(logout());
               router.push("/login");
@@ -58,27 +67,44 @@ const ProfileInfo = ({ userInfo }) => {
           >
             Log Out
           </div>
-          <div className={styles.box}>
-            <div className={styles.item}>Join:{profileData.Join} </div>
+          <div
+            className={styles.box}
+            style={{
+              backgroundImage:
+                "url('https://template.viserlab.com/hyiplab/demo/assets/images/bg/hero.jpg')",
+              backgroundSize: "fill",
+              backgroundPosition: "center",
+            }}
+          >
             <div className={styles.item}>
-              PaymentHistory:{profileData.paymentHistory}
+              Rank : <span>{profileData.rank}</span>
             </div>
-            <div className={styles.item}>Country: {profileData.country}</div>
-            <div className={styles.item}>NID:{profileData.Nid}</div>
-            <div className={styles.item}>Purchase: {profileData.Purchase}</div>
             <div className={styles.item}>
-              Revenue:total {profileData.revenue}
+              Country : <span>{profileData.country}</span>
             </div>
             <div className={styles.item}>
-              Direct Member:{profileData.directMember}
+              Package : <span>{profileData.package}</span>
+            </div>
+            <div className={styles.item}>
+              Revenue : <span>{profileData.revenue}</span>
+            </div>
+            <div className={styles.item}>
+              NID : <span>{profileData.nid}</span>{" "}
+            </div>
+            <div className={styles.item}>
+              Team : <span>{profileData.team}</span>{" "}
             </div>
 
             <div className={styles.item}>
-              Team Member:{profileData.teamMembers}
+              Joined : <span>{profileData.join}</span>{" "}
             </div>
 
             <div className={styles.item}>
-              Total Assets: {profileData.totalAsset}
+              Passport : <span>{profileData.nid}</span>{" "}
+            </div>
+
+            <div className={styles.item}>
+              Team Earning: <span>{profileData.teamEarning}</span>
             </div>
           </div>
           {open && (

@@ -3,12 +3,13 @@ import styles from "../styles/Navbar.module.css";
 import { useRouter } from "next/router";
 import MenuIcon from "@mui/icons-material/Menu";
 import ClearIcon from "@mui/icons-material/Clear";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const userInfo = useSelector((state) => state.user.userInfo);
 
-  const user = false;
   return (
     <div className={styles.navbar}>
       <div className={styles.nav__logo} onClick={() => router.push("/")}>
@@ -36,8 +37,13 @@ const Navbar = () => {
       </div>
 
       <div className={styles.nav__right}>
-        {user ? (
-          <div className={styles.profile}>Mark 41</div>
+        {userInfo ? (
+          <div
+            className={styles.profile}
+            onClick={() => router.push(`/profile/${userInfo._id}`)}
+          >
+            {userInfo.name}
+          </div>
         ) : (
           <>
             <div className={styles.sign} onClick={() => router.push("/login")}>
@@ -71,8 +77,8 @@ const Navbar = () => {
           </div>
 
           <div className={styles.nav__right}>
-            {user ? (
-              <div className={styles.profile}>Mark 41</div>
+            {userinfo ? (
+              <div className={styles.profile}>Dashboard</div>
             ) : (
               <>
                 <div

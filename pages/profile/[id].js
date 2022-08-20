@@ -5,21 +5,19 @@ import ProfilePost from "../../components/ProfiePost";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 const Profile = () => {
-  // const userInfo = useSelector((state) => state.user.userInfo);
+  const userInfo = useSelector((state) => state.user.userInfo);
   const router = useRouter();
-  const userInfo = false;
-  useEffect(() => {
-    if (!userInfo) {
-      router.push("/login");
-    }
-  }, []);
+
+  // useEffect(() => {
+  //   if (!userInfo) {
+  //     router.push("/login");
+  //   }
+  // }, []);
 
   return (
     <div className={styles.wrapper}>
       <ProfileInfo userInfo={userInfo} />
-      <div className={styles.circle1}></div>
-      <div className={styles.circle2}></div>
-      <ProfilePost userInfo={userInfo} />
+      {/* <ProfilePost userInfo={userInfo} /> */}
     </div>
   );
 };

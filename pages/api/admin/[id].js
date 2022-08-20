@@ -17,7 +17,7 @@ handler.get(async (req, res) => {
       const user = await User.findOne(
         { _id: req.query.id },
         {
-          "password": 0,
+          password: 0,
         }
       );
 
@@ -35,13 +35,28 @@ handler.get(async (req, res) => {
 
 // Update user information data
 handler.put(async (req, res) => {
+  console.log({
+    profile: req.body,
+  });
   try {
     await db.connect();
-    const user = await User.findOneAndUpdate({ _id: req.query.id }, req.body, {
-      new: true,
-    });
-    await db.disconnect();
-    return res.send(user);
+    if (req.user.isAdmin == true || req.user._id == req.query.id) {
+      const user = await User.findOneAndUpdate(
+        { _id: req.query.id },
+        {
+          name: req.body.name,
+          email: req.body.email,
+        },
+        {
+          new: true,
+        }
+      );
+      console.log(user);
+      await db.disconnect();
+      return res.send(user);
+    } else {
+      return res.status(400).send({ message:"UNAuthorized"})
+    }
   } catch (error) {
     console.log(error);
     return res.send(error);

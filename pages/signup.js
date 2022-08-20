@@ -18,6 +18,7 @@ const Register = () => {
   const [Nid, setNid] = useState("");
 
   const handleSubmit = async () => {
+    return;
     if (email == "" || name == "" || password == "" || country == "") {
       return;
     }

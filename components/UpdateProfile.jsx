@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import styles from "../styles/Contact.module.css";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
   const [profile, setProfile] = useState(profileData);
   console.log(profileData);
+  const router = useRouter();
 
   const handleSubmitLogin = async () => {
     console.log({ ...profile });
     try {
+      const { _id, ...rest } = profile;
       const { data } = await axios.put(
-        `/api/admin/${profileData._id}`,
-        profile,
+        `/api/admin/${router.query.id}`,
+        { ...rest },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         }
@@ -33,9 +36,10 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
         background: "rgb(0,0,0,0.6)",
 
         // maxWidth: "370px",
-        paddingTop: "250px",
+        padding: "15px",
+        paddingTop: "50px",
         paddingBottom: "50px",
-        minWidth: "370px",
+        minWidth: "320px",
         maxHeight: "80vh",
         overflowY: "scroll",
       }}
@@ -113,11 +117,13 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
             />
           </>
         )}
-        <div className={styles.btn} onClick={() => handleSubmitLogin()}>
-          Update Account
-        </div>
-        <div className={styles.btn__cancel} onClick={() => setOpen(false)}>
-          Cancel
+        <div className={styles.flex}>
+          <btn className={styles.btn} onClick={() => handleSubmitLogin()}>
+            Update Account
+          </btn>
+          <div className={styles.btn__cancel} onClick={() => setOpen(false)}>
+            Cancel
+          </div>
         </div>
       </form>
       {/* <div className={styles.circle1}></div>

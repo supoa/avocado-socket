@@ -9,10 +9,10 @@ import Structure from "../../../models/Post";
 const handler = nc();
 
 handler.use(isAuth);
-
-//get specific user information data
+//get specific user profile structure information data
 handler.get(async (req, res) => {
-  if (req.user.isAdmin == true || req.user._id == req.query.id) {
+  console.log("requesting");
+  if (req.user.isAdmin == true || req.user._id == req.query._id) {
     try {
       await db.connect();
       const structure = await Structure.find({ userId: req.query.id }).sort({
@@ -28,6 +28,7 @@ handler.get(async (req, res) => {
 
   return res.send({ msg: "not authenticated or  Not admin user" });
 });
+
 
 handler.use(isAuth, isAdmin);
 handler.put(async (req, res) => {
@@ -49,27 +50,12 @@ handler.put(async (req, res) => {
 });
 
 handler.use(isAuth, isAdmin);
-
 handler.delete(async (req, res) => {
   try {
     await db.connect();
     const structure = await Structure.findOneAndDelete({ _id: req.query.id });
     await db.disconnect();
     return res.send(structure);
-  } catch (error) {
-    console.log(error);
-    return res.send(error);
-  }
-});
-
-
-handler.use(isAuth);
-handler.get(async (req, res) => {
-  try {
-    await db.connect();
-    const structures = await Structure.find({ userId: req.query.id });
-    await db.disconnect();
-    return res.send(structures);
   } catch (error) {
     console.log(error);
     return res.send(error);

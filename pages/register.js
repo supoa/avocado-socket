@@ -18,15 +18,22 @@ const Login = () => {
   const [Nid, setNid] = useState("");
 
   const handleSubmit = async () => {
-    if (email == "" || password == "") {
+    return;
+    if (email == "" || name == "" || password == "" || country == "") {
       return;
     }
 
     try {
-      const { data } = await axios.post("/api/login", {
+      console.log({ email, password, country });
+      const { data } = await axios.post("/api/register", {
         email,
         password,
+        country,
+        payMentMethod,
+        Nid,
+        name,
       });
+
       dispatch(login(data));
       router.push(`/profile/${data._id}`);
       console.log(data);
@@ -81,10 +88,9 @@ const Login = () => {
             onChange={(e) => setCountry(e.target.value)}
           />
           <div className={styles.flex}>
-            {" "}
-            <btn>Sign Up Now</btn>
+            <btn onClick={() => handleSubmit()}>Sign Up Now</btn>
             <div className={styles.link}>
-              Already have Account ?{" "}
+              Already have Account ?
               <span onClick={() => router.push("/login")}>Login</span>
             </div>
           </div>
