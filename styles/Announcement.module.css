@@ -1,0 +1,7 @@
+.wrapper {
+  min-height: 25vh;
+  text-align: center;
+  padding: 15px;
+  padding-bottom: 40px;
+  background: linear-gradient(90deg, #444444 0%, #cbc8ff 100%);
+}

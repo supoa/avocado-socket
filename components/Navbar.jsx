@@ -9,31 +9,49 @@ const Navbar = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const userInfo = useSelector((state) => state.user.userInfo);
-
+  console.log(router);
   return (
     <div className={styles.navbar}>
       <div className={styles.nav__logo} onClick={() => router.push("/")}>
         Avo<span>Cado</span>
       </div>
       <div className={styles.nav__items}>
-        <div className={styles.item} onClick={() => router.push("/")}>
+        <div
+          style={{ color: `${router.asPath == "/" ? "gold" : ""}` }}
+          className={styles.item}
+          onClick={() => router.push("/")}
+        >
           Home
         </div>
-        <div className={styles.item} onClick={() => router.push("/#header")}>
+        <div
+          style={{ color: `${router.asPath == "/#about" ? "gold" : ""}` }}
+          className={styles.item}
+          onClick={() => router.push("/#about")}
+        >
           About
         </div>
-        <div className={styles.item} onClick={() => router.push("/#price")}>
-          Pricing
+        <div
+          style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
+          className={styles.item}
+          onClick={() => router.push("/#plan")}
+        >
+          Plan
         </div>
         <div
+          style={{ color: `${router.asPath == "/#contact" ? "gold" : ""}` }}
           className={styles.item}
-          onClick={() => router.push("/#architecture")}
+          onClick={() => router.push("/#contact")}
         >
-          Services
+          Contact
         </div>
-        <div className={styles.item} onClick={() => router.push("/#news")}>
-          News
-        </div>
+        {userInfo && (
+          <div
+            className={styles.item}
+            onClick={() => router.push(`/profile/${userInfo._id}`)}
+          >
+            Dashboard
+          </div>
+        )}
       </div>
 
       <div className={styles.nav__right}>
@@ -46,10 +64,15 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <div className={styles.sign} onClick={() => router.push("/login")}>
+            <div
+              style={{ color: `${router.asPath == "/login" ? "gold" : ""}` }}
+              className={styles.sign}
+              onClick={() => router.push("/login")}
+            >
               Log in
             </div>
             <div
+              style={{ color: `${router.asPath == "/register" ? "gold" : ""}` }}
               className={styles.sign}
               onClick={() => router.push("/register")}
             >
@@ -69,16 +92,44 @@ const Navbar = () => {
             <div className={styles.icon} onClick={() => setOpen(false)}>
               <ClearIcon />
             </div>
-            <div className={styles.item}>Home</div>
-            <div className={styles.item}>About</div>
-            <div className={styles.item}>Pricing</div>
-            <div className={styles.item}>Services</div>
-            <div className={styles.item}>News</div>
+            <div
+              style={{ color: `${router.asPath == "/" ? "gold" : ""}` }}
+              className={styles.item}
+              onClick={() => router.push("/")}
+            >
+              Home
+            </div>
+            <div
+              style={{ color: `${router.asPath == "/#about" ? "gold" : ""}` }}
+              className={styles.item}
+              onClick={() => router.push("/#about")}
+            >
+              About
+            </div>
+            <div
+              style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
+              className={styles.item}
+              onClick={() => router.push("/#plan")}
+            >
+              Plan
+            </div>
+            <div
+              style={{ color: `${router.asPath == "/#contact" ? "gold" : ""}` }}
+              className={styles.item}
+              onClick={() => router.push("/#contact")}
+            >
+              Contact
+            </div>
           </div>
 
           <div className={styles.nav__right}>
-            {userinfo ? (
-              <div className={styles.profile}>Dashboard</div>
+            {userInfo ? (
+              <div
+                className={styles.profile}
+                onClick={() => router.push(`/profile/${userInfo._id}`)}
+              >
+                Dashboard
+              </div>
             ) : (
               <>
                 <div

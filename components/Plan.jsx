@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Plan = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="plan">
       <h1>
         Investment <span>Plans</span>{" "}
       </h1>

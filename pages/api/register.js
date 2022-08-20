@@ -11,13 +11,8 @@ handler.post(async (req, res) => {
   try {
     await db.connect();
     const newUser = new User({
-      name: req.body.name,
-      email: req.body.email,
+      ...req.body,
       password: bcrypt.hashSync(req.body.password),
-      NID: req.body.NID,
-      payMentMethod: req.body.payMentMethod,
-      isAdmin: false,
-      country: req.body.country,
     });
     const user = await newUser.save();
     await db.disconnect();

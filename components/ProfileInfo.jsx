@@ -7,20 +7,22 @@ import axios from "axios";
 import { logout } from "../redux/userSlice";
 import { useRouter } from "next/router";
 
+const data = {
+  name: "Nahid Hasan",
+  rank: "Director",
+  country: "Bangladesh",
+  package: "5000 $",
+  revenue: "598 $",
+  team: "testuser1 testuser 2",
+  email: "nahidhasan@gmail.com",
+  join: "32/23/2033",
+  nid: "85098250280958320",
+  teamEarning: "$533",
+};
+
 const ProfileInfo = ({ userInfo }) => {
   const [open, setOpen] = useState(false);
-  const [profileData, setProfileData] = useState({
-    name: "Nahid Hasan",
-    rank: "Director",
-    country: "Bangladesh",
-    package: "5000 $",
-    revenue: "598 $",
-    team: "testuser1 testuser 2",
-    email: "nahidhasan@gmail.com",
-    join: "32/23/2033",
-    nid: "85098250280958320",
-    teamEarning: "$533",
-  });
+  const [profileData, setProfileData] = useState(null);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -38,9 +40,9 @@ const ProfileInfo = ({ userInfo }) => {
     }
   };
 
-  // useEffect(() => {
-  //   fetchProfileInfo();
-  // }, []);
+  useEffect(() => {
+    fetchProfileInfo();
+  }, []);
 
   return (
     <>
@@ -76,6 +78,10 @@ const ProfileInfo = ({ userInfo }) => {
               backgroundPosition: "center",
             }}
           >
+            
+            <div className={styles.item}>
+              Joined : <span>{profileData.join}</span>{" "}
+            </div>
             <div className={styles.item}>
               Rank : <span>{profileData.rank}</span>
             </div>
@@ -89,22 +95,13 @@ const ProfileInfo = ({ userInfo }) => {
               Revenue : <span>{profileData.revenue}</span>
             </div>
             <div className={styles.item}>
-              NID : <span>{profileData.nid}</span>{" "}
+              NID / Passport : <span>{profileData.nid}</span>{" "}
             </div>
             <div className={styles.item}>
               Team : <span>{profileData.team}</span>{" "}
             </div>
-
             <div className={styles.item}>
-              Joined : <span>{profileData.join}</span>{" "}
-            </div>
-
-            <div className={styles.item}>
-              Passport : <span>{profileData.nid}</span>{" "}
-            </div>
-
-            <div className={styles.item}>
-              Team Earning: <span>{profileData.teamEarning}</span>
+              Announcement: <span>{profileData.teamEarning}</span>
             </div>
           </div>
           {open && (

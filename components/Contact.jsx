@@ -11,6 +11,7 @@ const Contact = () => {
         backgroundSize: "fill",
         backgroundPosition: "center",
       }}
+      id="contact"
     >
       <h1>Get in touch with Us</h1>
 

@@ -11,6 +11,7 @@ const About = () => {
         backgroundSize: "cover",
         backgroundPosition: "right",
       }}
+      id="about"
     >
       <div className={styles.left}></div>
       <div className={styles.right}>

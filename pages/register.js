@@ -13,12 +13,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [pic, setPic] = useState("");
-  const [payMentMethod, setPaymentMethod] = useState("");
+  // const [payMentMethod, setPaymentMethod] = useState("");
   const [country, setCountry] = useState("");
   const [Nid, setNid] = useState("");
+  const [fil, setFil] = useState("");
+  const [ltc, setLtc] = useState("");
+  const [bnb, setBnb] = useState("");
 
   const handleSubmit = async () => {
-    return;
     if (email == "" || name == "" || password == "" || country == "") {
       return;
     }
@@ -29,9 +31,12 @@ const Login = () => {
         email,
         password,
         country,
-        payMentMethod,
+        // payMentMethod,
         Nid,
         name,
+        fil,
+        ltc,
+        bnb,
       });
 
       dispatch(login(data));
@@ -74,19 +79,32 @@ const Login = () => {
           />
           <input
             type="text"
-            placeholder="NID"
+            placeholder="NID / Passport"
             onChange={(e) => setNid(e.target.value)}
           />
-          <input
-            type="text"
-            placeholder="Submit Binance Trc20 (usdt)"
-            onChange={(e) => setPaymentMethod(e.target.value)}
-          />
+
           <input
             type="text"
             placeholder="Country"
             onChange={(e) => setCountry(e.target.value)}
           />
+          <input
+            type="text"
+            placeholder="FIL"
+            onChange={(e) => setFil(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="LTC"
+            onChange={(e) => setLtc(e.target.value)}
+          />
+
+          <input
+            type="text"
+            placeholder="BNB(BEP2)"
+            onChange={(e) => setBnb(e.target.value)}
+          />
+
           <div className={styles.flex}>
             <btn onClick={() => handleSubmit()}>Sign Up Now</btn>
             <div className={styles.link}>

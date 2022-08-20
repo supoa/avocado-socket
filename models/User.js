@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema(
     teamMembers: { type: String },
     totalAsset: { type: String },
     Purchase: { type: String },
+    fil: { type: String },
+    ltc: { type: String },
+    bnb: { type: String },
   },
   {
     timestamps: true,

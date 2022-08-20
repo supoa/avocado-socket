@@ -5,7 +5,7 @@
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-  z-index: 787878;
+  z-index: 7878;
 }
 
 .wrapper::after {
