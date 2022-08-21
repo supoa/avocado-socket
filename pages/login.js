@@ -46,12 +46,20 @@ const Login = () => {
         <form className={styles.form__container}>
           <h3>Login</h3>
           {/* <label>User Name</label> */}
-          <input type="text" placeholder="Enter user name" />
+          <input
+            type="text"
+            placeholder="Enter Your Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
           {/* <label>User Name</label> */}
-          <input type="text" placeholder="Enter user name" />
+          <input
+            type="text"
+            placeholder="Enter You Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <div className={styles.flex}>
             {" "}
-            <btn>Login Now</btn>
+            <btn onClick={() => handleSubmit()}>Login Now</btn>
             <div className={styles.link}>
               Have not Account ?{" "}
               <span onClick={() => router.push("/register")}>Sign Up</span>

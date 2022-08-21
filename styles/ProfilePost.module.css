@@ -10,13 +10,14 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: rgba(0, 12, 64);
+  background-color: var(--primary);
   font-size: 130%;
   padding: 10px;
   margin-bottom: 30px;
   width: 100%;
   min-width: 270px;
 }
+
 .posts {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -26,7 +27,28 @@
 }
 
 .post {
-  border: 1px solid lightgray;
+  border: 1px solid var(--secondary);
+}
+
+.wrapper .add__post__container {
+  border: 1px solid var(--secondary);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+.wrapper .add__post__container input {
+  padding: 7px;
+  border: 1px solid var(--secondary);
+  width: 100%;
+  border-radius: 5px;
+}
+
+.wrapper .add__post__container .flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
 }
 
 @media (max-width: 480px) {

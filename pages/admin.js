@@ -42,11 +42,19 @@ const Admin = () => {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      // style={{
+      //   backgroundImage:
+      //     "url('https://media.istockphoto.com/id/1406793901/photo/close-up-of-businessman-using-a-laptop-with-graphs-and-charts-on-a-laptop-computer.webp?s=612x612&w=is&k=20&c=kwUkWa3RhAOXCIvEaNrq9KukCSdgKwe5gl69nBiqsLU=')",
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      // }}
+    >
       <h1>Welcome To Your Dashboard</h1>
-      <Table users={users} setUsers={setUsers} />
-      <div className={styles.circle1}></div>
-      <div className={styles.circle2}></div>
+      <div className={styles.table__wrapper}>
+        <Table users={users} setUsers={setUsers} />
+      </div>
     </div>
   );
 };

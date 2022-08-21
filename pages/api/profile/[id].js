@@ -49,6 +49,7 @@ handler.put(async (req, res) => {
   }
 });
 
+
 handler.use(isAuth, isAdmin);
 handler.delete(async (req, res) => {
   try {

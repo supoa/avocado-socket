@@ -2,10 +2,19 @@ import React, { useState } from "react";
 import styles from "../styles/Contact.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { storage } from "../utils/firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
   const [profile, setProfile] = useState(profileData);
-  console.log(profileData);
+  const [loading, setLoading] = useState(null);
+  const [uploading, setUploading] = useState(null);
+  const [file, setFile] = useState("");
+  const [image, setImage] = useState();
+  const [progresspercent, setProgresspercent] = useState(0);
+
+  console.log(progresspercent);
   const router = useRouter();
 
   const handleSubmitLogin = async () => {
@@ -14,19 +23,49 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
       const { _id, ...rest } = profile;
       const { data } = await axios.put(
         `/api/admin/${router.query.id}`,
-        { ...rest },
+        { ...rest, picture: image },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         }
       );
 
       setProfileData((prev) => ({ ...prev, ...data }));
-      // localStorage.setItem("userInfo", JSON.stringify(data));
       setOpen(false);
       console.log(data);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleFile = (file, item) => {
+    console.log("file upload starred");
+    if (!file) return;
+    console.log("uploading...");
+    setUploading(true);
+
+    const storageRef = ref(storage, `poll/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgresspercent(progress);
+      },
+      (error) => {
+        alert(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log(downloadURL);
+          setImage(downloadURL);
+          setUploading(false);
+          setFile("");
+        });
+      }
+    );
   };
 
   return (
@@ -60,7 +99,14 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
           placeholder="Email"
           onChange={(e) => setProfile({ ...profile, email: e.target.value })}
         />
-        <input type="file" placeholder="Image" />
+        <input
+          type="file"
+          placeholder="Image"
+          onChange={(e) => {
+            setFile(e.target.files[0]);
+            handleFile(e.target.files[0]);
+          }}
+        />
         {userInfo.isAdmin && (
           <>
             <input
@@ -75,10 +121,8 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
             />
             <input
               type="text"
-              placeholder="Purchase"
-              onChange={(e) =>
-                setProfile({ ...profile, Purchase: e.target.value })
-              }
+              placeholder="Rank"
+              onChange={(e) => setProfile({ ...profile, rank: e.target.value })}
             />
             <input
               type="text"
@@ -96,23 +140,21 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
             />
             <input
               type="text"
-              placeholder="teamMembers"
+              placeholder="Team"
+              onChange={(e) => setProfile({ ...profile, team: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Package"
               onChange={(e) =>
-                setProfile({ ...profile, teamMembers: e.target.value })
+                setProfile({ ...profile, package: e.target.value })
               }
             />
             <input
               type="text"
-              placeholder="totalAsset"
+              placeholder="Announcement"
               onChange={(e) =>
-                setProfile({ ...profile, totalAsset: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="paymentHistory"
-              onChange={(e) =>
-                setProfile({ ...profile, paymentHistory: e.target.value })
+                setProfile({ ...profile, announcement: e.target.value })
               }
             />
           </>

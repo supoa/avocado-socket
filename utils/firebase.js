@@ -1,22 +1,16 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-
-  apiKey: "AIzaSyArUQH6E-ruASXDS43MAs-LE_QDjjkA73c",
-  authDomain: "stone-dc116.firebaseapp.com",
-  projectId: "stone-dc116",
-  storageBucket: "stone-dc116.appspot.com",
-  messagingSenderId: "824449225051",
-  appId: "1:824449225051:web:9df0f53bd24bbd55ffca7e",
-  measurementId: "G-VDB0GS2PZN"
+  apiKey: "AIzaSyCOjxY_RUCYGVnh3uF7YromVu8_L2mbQCw",
+  authDomain: "poll-maker-d82ae.firebaseapp.com",
+  projectId: "poll-maker-d82ae",
+  storageBucket: "poll-maker-d82ae.appspot.com",
+  messagingSenderId: "428446679503",
+  appId: "1:428446679503:web:066d295c8924de89d612ba",
+  measurementId: "G-QTQFPPCQZ2",
 };
-
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-
-export const db = getStorage(app);
+export const storage = getStorage(app);

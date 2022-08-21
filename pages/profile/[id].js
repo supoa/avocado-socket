@@ -17,7 +17,7 @@ const Profile = () => {
   return (
     <div className={styles.wrapper}>
       <ProfileInfo userInfo={userInfo} />
-      {/* <ProfilePost userInfo={userInfo} /> */}
+      <ProfilePost userInfo={userInfo} />
     </div>
   );
 };

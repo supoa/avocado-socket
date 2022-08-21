@@ -28,7 +28,7 @@ const ProfileInfo = ({ userInfo }) => {
 
   const fetchProfileInfo = async () => {
     try {
-      const { data } = await axios.get(`/api/admin/${userInfo._id}`, {
+      const { data } = await axios.get(`/api/admin/${router.query.id}`, {
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
         },
@@ -42,33 +42,40 @@ const ProfileInfo = ({ userInfo }) => {
 
   useEffect(() => {
     fetchProfileInfo();
-  }, []);
+  }, [router.query.id]);
 
   return (
     <>
       {profileData ? (
         <div className={styles.wrapper}>
           <div className={styles.profile__photo}>
-            <Image
-              src="/images/crypto1.jpg"
-              width="200px"
-              height="200px"
-              alt=""
-            />
+            {profileData.picture ? (
+              <Image
+                src={profileData.picture}
+                width="200px"
+                height="200px"
+                alt=""
+              />
+            ) : (
+              <></>
+            )}
             <div className={styles.photo__wrapper}></div>
           </div>
           <div className={styles.profile__name}>{profileData.name}</div>
           <div className={styles.profile__email}> {profileData.email} </div>
-          <btn onClick={() => setOpen(true)}>Update Your Profile</btn>
-          <div
-            className={styles.profile__btn}
-            onClick={() => {
-              dispatch(logout());
-              router.push("/login");
-            }}
-          >
-            Log Out
-          </div>
+          <btn onClick={() => setOpen(true)}>Update Profile</btn>
+          {userInfo._id == router.query.id && (
+            <div
+              className={styles.profile__btn}
+              onClick={() => {
+               
+                router.push("/login");
+                dispatch(logout());
+              }}
+            >
+              Log Out
+            </div>
+          )}
           <div
             className={styles.box}
             style={{
@@ -78,9 +85,8 @@ const ProfileInfo = ({ userInfo }) => {
               backgroundPosition: "center",
             }}
           >
-            
             <div className={styles.item}>
-              Joined : <span>{profileData.join}</span>{" "}
+              Joined : <span>{profileData.Join}</span>{" "}
             </div>
             <div className={styles.item}>
               Rank : <span>{profileData.rank}</span>
@@ -95,13 +101,13 @@ const ProfileInfo = ({ userInfo }) => {
               Revenue : <span>{profileData.revenue}</span>
             </div>
             <div className={styles.item}>
-              NID / Passport : <span>{profileData.nid}</span>{" "}
+              NID / Passport : <span>{profileData.Nid}</span>{" "}
             </div>
             <div className={styles.item}>
               Team : <span>{profileData.team}</span>{" "}
             </div>
             <div className={styles.item}>
-              Announcement: <span>{profileData.teamEarning}</span>
+              Announcement: <span>{profileData.announcement}</span>
             </div>
           </div>
           {open && (

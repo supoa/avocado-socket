@@ -20,6 +20,7 @@ handler.get(async (req, res) => {
           password: 0,
         }
       );
+      console.log({ user });
 
       await db.disconnect();
 
@@ -33,7 +34,6 @@ handler.get(async (req, res) => {
   return res.send({ msg: "not authenticated or  Not admin user" });
 });
 
-// Update user information data
 handler.put(async (req, res) => {
   console.log({
     profile: req.body,
@@ -44,8 +44,7 @@ handler.put(async (req, res) => {
       const user = await User.findOneAndUpdate(
         { _id: req.query.id },
         {
-          name: req.body.name,
-          email: req.body.email,
+          ...req.body,
         },
         {
           new: true,
@@ -55,7 +54,7 @@ handler.put(async (req, res) => {
       await db.disconnect();
       return res.send(user);
     } else {
-      return res.status(400).send({ message:"UNAuthorized"})
+      return res.status(400).send({ message: "UNAuthorized" });
     }
   } catch (error) {
     console.log(error);
@@ -66,34 +65,20 @@ handler.put(async (req, res) => {
 //Uploading structure
 handler.use(isAuth, isAdmin);
 handler.post(async (req, res) => {
-  console.log("....this is runnig");
-  await db.connect();
-  const structure = new Structure({
-    content: req.body.content,
-    userId: req.query.id,
-  });
-  const newStructure = await structure.save();
-  res.send(newStructure);
+  try {
+    console.log("....this is runnig");
+    await db.connect();
+    const structure = new Structure({
+      content: req.body.content,
+      userId: req.query.id,
+    });
+    const newStructure = await structure.save();
+    res.send(newStructure);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
 });
 
-handler.use(isAuth);
-//find all structure in speceific profile
-// handler.get(async (req, res) => {
-//   if (req.user.isAdmin == true || req.user._id == req.query.id) {
-//     try {
-//       await db.connect();
-//       const structure = await Structure.find({ _id: req.query.id }).sort({
-//         createdAt: -1,
-//       });
-//       await db.disconnect();
-//       return res.send(structure);
-//     } catch (error) {
-//       console.log(error);
-//       return res.send(error);
-//     }
-//   }
-
-//   return res.send({ msg: "not authenticated or  Not admin user" });
-// });
 
 export default handler;
