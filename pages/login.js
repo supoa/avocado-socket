@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
-import auth from "../data/auth";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Login = () => {
@@ -45,7 +44,10 @@ const Login = () => {
           <h2>
             Welcome To <span>HYLIPLAB</span>
           </h2>
-          <p>{auth.content}</p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus
+            distinctio deserunt impedit similique debitis voluptatum enim.
+          </p>
         </div>
         <form className={styles.form__container}>
           <h3>Login</h3>
