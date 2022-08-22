@@ -6,13 +6,15 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
 import auth from "../data/auth";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Login = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [errors, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     if (email == "" || password == "") {
@@ -21,14 +23,17 @@ const Login = () => {
     }
 
     try {
+      setLoading(true);
       const { data } = await axios.post("/api/login", {
         email,
         password,
       });
       dispatch(login(data));
+      setLoading(false);
       router.push(`/profile/${data._id}`);
       console.log(data);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -56,9 +61,13 @@ const Login = () => {
             placeholder="Enter You Password"
             onChange={(e) => setPassword(e.target.value)}
           />{" "}
-          <div className={styles.error}>{error} </div>
+          {errors && <div className={styles.error}>{errors} </div>}
           <div className={styles.flex}>
-            <btn onClick={() => handleSubmit()}>Login Now</btn>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <btn onClick={() => handleSubmit()}>Login Now</btn>
+            )}
             <div className={styles.link}>
               Have not Account ?{" "}
               <span onClick={() => router.push("/register")}>Sign Up</span>

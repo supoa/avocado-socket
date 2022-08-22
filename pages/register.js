@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
 import auth from "../data/auth";
+import CircularProgress from "@mui/material/CircularProgress";
+
 const Login = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -19,41 +21,44 @@ const Login = () => {
   const [fil, setFil] = useState("");
   const [ltc, setLtc] = useState("");
   const [bnb, setBnb] = useState("");
-  const [error, setError] = useState(null);
+  const [errors, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     if (
       email.trim() == "" ||
       name.trim() == "" ||
-      password.trim() == "" ||
       country.trim() == "" ||
-      Nid.trim() == "" ||
-      ltc.trim() == "" ||
+      fil.trim() == "" ||
       bnb.trim() == "" ||
-      fil.trim() == ""
+      ltc.trim() == "" ||
+      Nid.trim() == "" ||
+      password == ""
     ) {
       setError("Please enter All The Field Correctly");
       return;
     }
 
     try {
-      console.log({ email, password, country });
+      setLoading(true);
       const { data } = await axios.post("/api/register", {
         email,
         password,
         country,
-        // payMentMethod,
         Nid,
         name,
         fil,
         ltc,
         bnb,
       });
-
+      console.log(data);
       dispatch(login(data));
+      setLoading(false);
       router.push(`/profile/${data._id}`);
       console.log(data);
     } catch (error) {
+      setLoading(false);
+      setError(error);
       console.log(error);
     }
   };
@@ -112,9 +117,13 @@ const Login = () => {
             placeholder="BNB(BEP2)"
             onChange={(e) => setBnb(e.target.value)}
           />
-          {error && <div className={styles.error}>{error} </div>}
+          {errors && <div className={styles.error}>{errors} </div>}
           <div className={styles.flex}>
-            <btn onClick={() => handleSubmit()}>Sign Up Now</btn>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <btn onClick={() => handleSubmit()}>Sign Up Now</btn>
+            )}
             <div className={styles.link}>
               Already have Account ?
               <span onClick={() => router.push("/login")}>Login</span>

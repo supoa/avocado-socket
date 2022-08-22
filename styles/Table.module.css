@@ -43,7 +43,7 @@
 
 .table__container table td:first-child {
   /* background-color: var(--primary); */
-  /* color: black; */
+  color: black;
   cursor: pointer;
   text-align: left;
   display: flex;
@@ -54,11 +54,12 @@
 }
 
 .table__container table td:first-child span:hover {
-  color: var(--secondary);
+  /* color: var(--secondary); */
+  color: black;
 }
 
 .table__container table td:first-child span {
-  /* color: black; */
+  color: black;
   margin-left: 5px;
 }
 

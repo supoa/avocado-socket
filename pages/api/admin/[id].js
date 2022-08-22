@@ -34,6 +34,7 @@ handler.get(async (req, res) => {
   return res.send({ msg: "not authenticated or  Not admin user" });
 });
 
+// update user profile
 handler.put(async (req, res) => {
   console.log({
     profile: req.body,

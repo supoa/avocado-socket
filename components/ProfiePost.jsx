@@ -155,18 +155,19 @@ const ProfiePost = ({ userInfo }) => {
       )}
 
       <div className={styles.posts}>
-        {posts?.map((post) => (
-          <div className={styles.post}>
-            {post.content && (
-              <Image src={post.content} width="400px" height="400px" />
-            )}
-            {userInfo?.isAdmin && (
-              <div className={styles.icon}>
-                <DeleteIcon onDoubleClick={() => handleDelete(post._id)} />
-              </div>
-            )}
-          </div>
-        ))}
+        {posts.length > 0 &&
+          posts.map((post) => (
+            <div className={styles.post}>
+              {post.content && (
+                <Image src={post.content} width="400px" height="400px" />
+              )}
+              {userInfo?.isAdmin && (
+                <div className={styles.icon}>
+                  <DeleteIcon onDoubleClick={() => handleDelete(post._id)} />
+                </div>
+              )}
+            </div>
+          ))}
       </div>
     </div>
   );

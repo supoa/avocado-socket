@@ -11,7 +11,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 const ProfileInfo = ({ userInfo }) => {
   const [open, setOpen] = useState(false);
-  const [profileData, setProfileData] = useState(null);
+  const [profileData, setProfileData] = useState();
   const dispatch = useDispatch();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -71,7 +71,7 @@ const ProfileInfo = ({ userInfo }) => {
           <div className={styles.profile__name}>{profileData.name}</div>
           <div className={styles.profile__email}> {profileData.email}</div>
           <btn onClick={() => setOpen(true)}>Update Profile</btn>
-          {userInfo._id == router.query.id && (
+          {userInfo?._id == router.query.id && (
             <div
               className={styles.profile__btn}
               onClick={() => {
@@ -82,7 +82,7 @@ const ProfileInfo = ({ userInfo }) => {
               Log Out
             </div>
           )}
-          {userInfo.isAdmin && (
+          {userInfo?.isAdmin && (
             <div className={styles.icon}>
               {loading ? (
                 <CircularProgress />

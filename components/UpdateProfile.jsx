@@ -92,25 +92,32 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
         className={styles.form}
         // style={{ maxHeight: "80vh", overflowY: "scroll" }}
       >
-        <input
-          type="text"
-          placeholder="Name"
-          onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-        />
+        {userInfo._id == router.query.id && (
+          <>
+            {" "}
+            <input
+              type="text"
+              placeholder="Name"
+              onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              onChange={(e) =>
+                setProfile({ ...profile, email: e.target.value })
+              }
+            />
+            <input
+              type="file"
+              placeholder="Image"
+              onChange={(e) => {
+                setFile(e.target.files[0]);
+                handleFile(e.target.files[0]);
+              }}
+            />
+          </>
+        )}
 
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-        />
-        <input
-          type="file"
-          placeholder="Image"
-          onChange={(e) => {
-            setFile(e.target.files[0]);
-            handleFile(e.target.files[0]);
-          }}
-        />
         {userInfo.isAdmin && (
           <>
             <input
