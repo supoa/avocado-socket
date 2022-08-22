@@ -46,10 +46,25 @@ const Navbar = () => {
         </div>
         {userInfo && (
           <div
+            style={{
+              color: `${router.pathname == "/profile/[id]" ? "gold" : ""}`,
+            }}
             className={styles.item}
             onClick={() => router.push(`/profile/${userInfo._id}`)}
           >
             Dashboard
+          </div>
+        )}
+
+        {userInfo?.isAdmin && (
+          <div
+            style={{
+              color: `${router.asPath == "/admin" ? "gold" : ""}`,
+            }}
+            className={styles.item}
+            onClick={() => router.push("/admin")}
+          >
+            Admin
           </div>
         )}
       </div>
@@ -123,8 +138,22 @@ const Navbar = () => {
           </div>
 
           <div className={styles.nav__right}>
+            {userInfo?.isAdmin && (
+              <div
+                style={{
+                  color: `${router.asPath == "/admin" ? "gold" : ""}`,
+                }}
+                className={styles.item}
+                onClick={() => router.push("/admin")}
+              >
+                Admin
+              </div>
+            )}
             {userInfo ? (
               <div
+                style={{
+                  color: `${router.pathname == "/profile/[id]" ? "gold" : ""}`,
+                }}
                 className={styles.profile}
                 onClick={() => router.push(`/profile/${userInfo._id}`)}
               >

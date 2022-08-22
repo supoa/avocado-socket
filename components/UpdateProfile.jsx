@@ -8,8 +8,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
   const [profile, setProfile] = useState(profileData);
-  const [loading, setLoading] = useState(null);
-  const [uploading, setUploading] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [file, setFile] = useState("");
   const [image, setImage] = useState();
   const [progresspercent, setProgresspercent] = useState(0);
@@ -19,6 +19,7 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
 
   const handleSubmitLogin = async () => {
     console.log({ ...profile });
+    setLoading(true);
     try {
       const { _id, ...rest } = profile;
       const { data } = await axios.put(
@@ -31,8 +32,10 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
 
       setProfileData((prev) => ({ ...prev, ...data }));
       setOpen(false);
+      setLoading(false);
       console.log(data);
     } catch (error) {
+      setloading(false);
       console.log(error);
     }
   };
@@ -55,6 +58,7 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
         setProgresspercent(progress);
       },
       (error) => {
+        setUploading(false);
         alert(error);
       },
       () => {
@@ -160,9 +164,14 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
           </>
         )}
         <div className={styles.flex}>
-          <btn className={styles.btn} onClick={() => handleSubmitLogin()}>
-            Update Account
-          </btn>
+          {loading || uploading ? (
+            <CircularProgress />
+          ) : (
+            <btn className={styles.btn} onClick={() => handleSubmitLogin()}>
+              Update Account
+            </btn>
+          )}
+
           <div className={styles.btn__cancel} onClick={() => setOpen(false)}>
             Cancel
           </div>

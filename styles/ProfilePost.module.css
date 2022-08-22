@@ -16,6 +16,21 @@
   margin-bottom: 30px;
   width: 100%;
   min-width: 270px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.plus {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 150%;
+  height: 100%;
+  background-color: blue;
+  width: 45px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
 }
 
 .posts {
@@ -28,14 +43,24 @@
 
 .post {
   border: 1px solid var(--secondary);
+  position: relative;
+}
+
+.post .icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: red;
+  font-size: 150%;
 }
 
 .wrapper .add__post__container {
   border: 1px solid var(--secondary);
   padding: 10px;
   border-radius: 5px;
+  margin-bottom: 10px;
+  width: 100%;
 }
-
 
 .wrapper .add__post__container input {
   padding: 7px;

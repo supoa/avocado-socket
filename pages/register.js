@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
-
+import auth from "../data/auth";
 const Login = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -19,9 +19,20 @@ const Login = () => {
   const [fil, setFil] = useState("");
   const [ltc, setLtc] = useState("");
   const [bnb, setBnb] = useState("");
+  const [error, setError] = useState(null);
 
   const handleSubmit = async () => {
-    if (email == "" || name == "" || password == "" || country == "") {
+    if (
+      email.trim() == "" ||
+      name.trim() == "" ||
+      password.trim() == "" ||
+      country.trim() == "" ||
+      Nid.trim() == "" ||
+      ltc.trim() == "" ||
+      bnb.trim() == "" ||
+      fil.trim() == ""
+    ) {
+      setError("Please enter All The Field Correctly");
       return;
     }
 
@@ -54,10 +65,7 @@ const Login = () => {
           <h2>
             Welcome To <span>HYLIPLAB</span>
           </h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus
-            distinctio deserunt impedit similique debitis voluptatum enim.
-          </p>
+          <p>{auth.content}</p>
         </div>
         <form className={styles.form__container}>
           <h3>Register</h3>
@@ -104,7 +112,7 @@ const Login = () => {
             placeholder="BNB(BEP2)"
             onChange={(e) => setBnb(e.target.value)}
           />
-
+          {error && <div className={styles.error}>{error} </div>}
           <div className={styles.flex}>
             <btn onClick={() => handleSubmit()}>Sign Up Now</btn>
             <div className={styles.link}>

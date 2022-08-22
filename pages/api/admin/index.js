@@ -3,11 +3,11 @@ import bcrypt from "bcryptjs";
 import User from "../../../models/User";
 
 import db from "../../../utils/db";
-// import { signToken, isAdmin, isAuth } from "../../../utils/auth";
+import { signToken, isAdmin, isAuth } from "../../../utils/auth";
 
 const handler = nc();
 
-// handler.use(isAuth, isAdmin);
+handler.use(isAuth, isAdmin);
 
 handler.get(async (req, res) => {
   try {

@@ -2,7 +2,11 @@ import React from "react";
 import styles from "../styles/Header.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { header } from "../data.js";
+import { useRouter } from "next/router";
+
 const Header = () => {
+  const router = useRouter();
   return (
     <div
       className={styles.wrapper}
@@ -22,17 +26,13 @@ const Header = () => {
         className={styles.left}
       >
         <h1>
-          Invest for Future in Stable Platform <span>and Make Fast Money</span>
+          {header.title}
+          <span> {header.span}</span>
         </h1>
-
-        <p>
-          Invest in an Industry Leader, Professional, and Reliable Company. We
-          provide you with the most necessary features that will make your
-          experience better. Not only we guarantee the fastest and the most
-          exciting returns on your investments, but we also guarantee the
-          security of your investment.
-        </p>
-        <btn className={styles.btn}>Join Us</btn>
+        <p>{header.content}</p>
+        <btn className={styles.btn} onClick={() => router.push("/login")}>
+          Join Us
+        </btn>
       </motion.div>
       <div className={styles.right}>
         {/* <Image

@@ -6,7 +6,7 @@
   min-height: 100vh;
   text-align: left;
   padding: 15px;
-  padding-top: 120px;
+  padding: 110px 0;
 }
 
 .box {
@@ -67,4 +67,8 @@
 
 .flex .link span:hover {
   color: var(--secondary);
+}
+
+.error {
+  color: red;
 }

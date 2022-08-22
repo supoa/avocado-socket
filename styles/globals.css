@@ -44,7 +44,7 @@ span {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: aqua;
+  background-color: rgb(114, 114, 107);
   /* outline: 1px solid aqua; */
   width: 12px;
 }
@@ -54,6 +54,10 @@ a {
   text-decoration: none;
 }
 
+
+input {
+  color: white;
+}
 .btn {
   cursor: pointer;
   background-color: var(--primary);

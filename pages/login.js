@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
+import auth from "../data/auth";
 
 const Login = () => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const Login = () => {
 
   const handleSubmit = async () => {
     if (email == "" || password == "") {
+      setError("Please enter all the field");
       return;
     }
 
@@ -38,10 +40,7 @@ const Login = () => {
           <h2>
             Welcome To <span>HYLIPLAB</span>
           </h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus
-            distinctio deserunt impedit similique debitis voluptatum enim.
-          </p>
+          <p>{auth.content}</p>
         </div>
         <form className={styles.form__container}>
           <h3>Login</h3>
@@ -56,9 +55,9 @@ const Login = () => {
             type="text"
             placeholder="Enter You Password"
             onChange={(e) => setPassword(e.target.value)}
-          />
+          />{" "}
+          <div className={styles.error}>{error} </div>
           <div className={styles.flex}>
-            {" "}
             <btn onClick={() => handleSubmit()}>Login Now</btn>
             <div className={styles.link}>
               Have not Account ?{" "}

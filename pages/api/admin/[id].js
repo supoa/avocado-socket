@@ -80,5 +80,19 @@ handler.post(async (req, res) => {
   }
 });
 
+//delete a structure
+handler.use(isAdmin);
+handler.delete(async (req, res) => {
+  try {
+    await db.connect();
+    const response = await Structure.findOneAndDelete({ _id: req.query.id });
+    await db.disconnect();
+    console.log(response);
+    res.status(200).send(response);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
 
 export default handler;

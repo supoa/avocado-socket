@@ -3,5 +3,31 @@
   text-align: center;
   padding: 15px;
   padding-bottom: 40px;
-  background: linear-gradient(90deg, #444444 0%, #cbc8ff 100%);
+  background: linear-gradient(90deg, #000000 0%, #1d1401 100%);
+  position: relative;
+}
+
+.form__container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.form__container input {
+  background-color: transparent !important;
+  position: relative;
+  padding: 7px;
+  border: none !important;
+}
+
+.plus {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: blue;
+  height: 100%;
+  padding: 0 5px;
+  border-radius: 0 5px 5px 0;
 }

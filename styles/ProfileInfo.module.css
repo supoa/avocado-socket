@@ -11,6 +11,15 @@
   gap: 12px;
   border: 1px solid gold;
   border-radius: 5px;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: red;
+  padding: 5px;
 }
 
 .profile__photo img {

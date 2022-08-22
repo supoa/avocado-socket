@@ -29,7 +29,6 @@ handler.get(async (req, res) => {
   return res.send({ msg: "not authenticated or  Not admin user" });
 });
 
-
 handler.use(isAuth, isAdmin);
 handler.put(async (req, res) => {
   try {
@@ -49,14 +48,13 @@ handler.put(async (req, res) => {
   }
 });
 
-
 handler.use(isAuth, isAdmin);
 handler.delete(async (req, res) => {
   try {
     await db.connect();
-    const structure = await Structure.findOneAndDelete({ _id: req.query.id });
+    const user = await User.findOneAndDelete({ _id: req.query.id });
     await db.disconnect();
-    return res.send(structure);
+    return res.send(user);
   } catch (error) {
     console.log(error);
     return res.send(error);

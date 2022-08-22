@@ -6,25 +6,15 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { logout } from "../redux/userSlice";
 import { useRouter } from "next/router";
-
-const data = {
-  name: "Nahid Hasan",
-  rank: "Director",
-  country: "Bangladesh",
-  package: "5000 $",
-  revenue: "598 $",
-  team: "testuser1 testuser 2",
-  email: "nahidhasan@gmail.com",
-  join: "32/23/2033",
-  nid: "85098250280958320",
-  teamEarning: "$533",
-};
+import DeleteIcon from "@mui/icons-material/Delete";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const ProfileInfo = ({ userInfo }) => {
   const [open, setOpen] = useState(false);
   const [profileData, setProfileData] = useState(null);
   const dispatch = useDispatch();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const fetchProfileInfo = async () => {
     try {
@@ -37,6 +27,23 @@ const ProfileInfo = ({ userInfo }) => {
       setProfileData(data);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.delete(`/api/profile/${router.query.id}`, {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+      setLoading(false);
+
+      router.push("/admin");
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
     }
   };
 
@@ -62,18 +69,26 @@ const ProfileInfo = ({ userInfo }) => {
             <div className={styles.photo__wrapper}></div>
           </div>
           <div className={styles.profile__name}>{profileData.name}</div>
-          <div className={styles.profile__email}> {profileData.email} </div>
+          <div className={styles.profile__email}> {profileData.email}</div>
           <btn onClick={() => setOpen(true)}>Update Profile</btn>
           {userInfo._id == router.query.id && (
             <div
               className={styles.profile__btn}
               onClick={() => {
-               
                 router.push("/login");
                 dispatch(logout());
               }}
             >
               Log Out
+            </div>
+          )}
+          {userInfo.isAdmin && (
+            <div className={styles.icon}>
+              {loading ? (
+                <CircularProgress />
+              ) : (
+                <DeleteIcon onDoubleClick={() => handleDelete()} />
+              )}
             </div>
           )}
           <div

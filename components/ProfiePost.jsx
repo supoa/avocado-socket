@@ -6,6 +6,7 @@ import { storage } from "../utils/firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ProfiePost = ({ userInfo }) => {
   const [error, setError] = useState("");
@@ -13,7 +14,7 @@ const ProfiePost = ({ userInfo }) => {
   const [open, setOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [formOpen, setFormOpen] = useState(false);
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(null);
   const [file, setFile] = useState("");
   const [image, setImage] = useState();
@@ -27,8 +28,11 @@ const ProfiePost = ({ userInfo }) => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       });
+
       setPosts(data);
+      setFile("");
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -36,6 +40,7 @@ const ProfiePost = ({ userInfo }) => {
   console.log(progresspercent);
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.post(
         `/api/admin/${router.query.id}`,
         {
@@ -47,8 +52,14 @@ const ProfiePost = ({ userInfo }) => {
           },
         }
       );
-      setPosts((prev) => [...posts, data]);
+      setLoading(false);
+      setFormOpen(false);
+      setFile("");
+      setPosts((prev) => [data, ...posts]);
     } catch (error) {
+      setLoading(false);
+      setLoading(true);
+
       console.log(error);
     }
   };
@@ -56,6 +67,7 @@ const ProfiePost = ({ userInfo }) => {
   const handleFile = (file, item) => {
     console.log("file upload starred");
     if (!file) return;
+
     console.log("uploading...");
     setUploading(true);
 
@@ -84,34 +96,40 @@ const ProfiePost = ({ userInfo }) => {
     );
   };
 
+  const handleDelete = async (id) => {
+    try {
+      const { data } = await axios.delete(
+        `/api/admin/${id}`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
+      setPosts(posts.filter((item) => item._id != id));
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetch();
-  }, []);
+  }, [router.query.id]);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
-        <div className={styles.left}>Your Post</div>
-        <div className={styles.right}>
-          <div className={styles.icon} onClick={() => setOpen((prev) => !prev)}>
-            Open
+        Structure for your
+        {userInfo?.isAdmin && (
+          <div className={styles.plus} onClick={() => setFormOpen(true)}>
+            +
           </div>
-        </div>
+        )}
       </div>
-      {open && (
-        <div className={styles.posts}>
-          {posts.length > 0 &&
-            posts.map((post) => (
-              <div className={styles.post}>
-                {post.content && (
-                  <Image src={post.content} width="200px" height="200px" />
-                )}
-              </div>
-            ))}
-        </div>
-      )}
 
-      {userInfo?.isAdmin && (
+      {formOpen && (
         <div className={styles.add__post__container}>
           <input
             type="file"
@@ -121,11 +139,35 @@ const ProfiePost = ({ userInfo }) => {
             }}
           />
           <div className={styles.flex}>
-            <btn onClick={() => handleSubmit()}>Submit</btn>
-            <btn>Cancel</btn>
+            {uploading || loading ? (
+              <CircularProgress />
+            ) : (
+              <btn onClick={() => handleSubmit()}>Submit</btn>
+            )}
+            <btn
+              style={{ background: "red" }}
+              onClick={() => setFormOpen(false)}
+            >
+              Cancel
+            </btn>
           </div>
         </div>
       )}
+
+      <div className={styles.posts}>
+        {posts?.map((post) => (
+          <div className={styles.post}>
+            {post.content && (
+              <Image src={post.content} width="400px" height="400px" />
+            )}
+            {userInfo?.isAdmin && (
+              <div className={styles.icon}>
+                <DeleteIcon onDoubleClick={() => handleDelete(post._id)} />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
