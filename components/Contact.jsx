@@ -11,47 +11,47 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  // const sendEmail = (e) => {
-  //   e.preventDefault();
-  //   console.log(form.current);
-
-  //   emailjs
-  //     .sendForm(
-  //       "service_neut6g5",
-  //       "template_0j947pm",
-  //       form.current,
-  //       "23vsjozybW-Dux2Oq"
-  //     )
-  //     .then(
-  //       (result) => {
-  //         console.log(result.text);
-  //       },
-  //       (error) => {
-  //         console.log(error.text);
-  //       }
-  //     );
-  // };
-
-  const sendEmail = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
+    console.log(form.current);
 
-    if (name == "" || email == "" || message == "") {
-      return;
-    }
-    try {
-      const res = await axios.post("/api/getmail", {
-        name,
-        email,
-        message,
-      });
-
-      res.status = 200
-        ? setStatus("Email Send Successfully")
-        : setStatus("Failed to Send Email");
-    } catch (error) {
-      console.log(error);
-    }
+    emailjs
+      .sendForm(
+        "service_neut6g5",
+        "template_0j947pm",
+        form.current,
+        "23vsjozybW-Dux2Oq"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
+
+  // const sendEmail = async (e) => {
+  //   e.preventDefault();
+
+  //   if (name == "" || email == "" || message == "") {
+  //     return;
+  //   }
+  //   try {
+  //     const res = await axios.post("/api/getmail", {
+  //       name,
+  //       email,
+  //       message,
+  //     });
+
+  //     res.status = 200
+  //       ? setStatus("Email Send Successfully")
+  //       : setStatus("Failed to Send Email");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div
