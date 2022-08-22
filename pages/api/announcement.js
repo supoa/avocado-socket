@@ -8,13 +8,14 @@ const handler = nc();
 
 handler.get(async (req, res) => {
   try {
+    await db.connect();
     const notice = await Announcement.find().sort({ _id: -1 }).limit(1);
+    await db.disconnect();
     return res.status(200).send(notice);
   } catch (error) {
     console.log(error);
   }
 });
-
 
 handler.use(isAuth, isAdmin);
 handler.post(async (req, res) => {
