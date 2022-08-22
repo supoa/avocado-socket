@@ -33,6 +33,7 @@ const Announcement = () => {
           },
         }
       );
+      setContent("");
       setNotice(data);
     } catch (error) {
       console.log(error);
@@ -52,6 +53,7 @@ const Announcement = () => {
             type="text"
             className={styles.field}
             placeholder="Announce Notice"
+            value={content}
             onChange={(e) => setContent(e.target.value)}
           />
           <div className={styles.plus} onClick={() => handleNotic()}>

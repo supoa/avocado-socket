@@ -39,6 +39,9 @@ const ProfiePost = ({ userInfo }) => {
 
   console.log(progresspercent);
   const handleSubmit = async () => {
+    if (!image) {
+      return;
+    }
     try {
       setLoading(true);
       const { data } = await axios.post(
@@ -54,7 +57,8 @@ const ProfiePost = ({ userInfo }) => {
       );
       setLoading(false);
       setFormOpen(false);
-      setFile("");
+      setFile(null);
+      setImage(null);
       setPosts((prev) => [data, ...posts]);
     } catch (error) {
       setLoading(false);

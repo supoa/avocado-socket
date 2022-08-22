@@ -31,11 +31,12 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
       );
 
       setProfileData((prev) => ({ ...prev, ...data }));
+      setImage(null);
       setOpen(false);
       setLoading(false);
       console.log(data);
     } catch (error) {
-      setloading(false);
+      setLoading(false);
       console.log(error);
     }
   };
