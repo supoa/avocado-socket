@@ -8,7 +8,6 @@ import Header from "../components/Header";
 
 import Footer from "../components/Footer";
 
-import Contact from "../components/Contact";
 import About from "../components/About";
 import Plan from "../components/Plan";
 import Announcement from "../components/Announcement";
@@ -48,7 +47,6 @@ export default function Home() {
         <Announcement />
         <About />
         <Plan />
-        {/* <Contact /> */}
       </main>
 
       <footer className={styles.footer}></footer>
