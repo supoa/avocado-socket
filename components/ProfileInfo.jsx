@@ -64,7 +64,7 @@ const ProfileInfo = ({ userInfo }) => {
                 alt=""
               />
             ) : (
-              <></>
+              <Image src="/avatar.png" width="200px" height="200px" alt="" />
             )}
             <div className={styles.photo__wrapper}></div>
           </div>

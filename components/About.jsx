@@ -19,21 +19,15 @@ const About = () => {
           About <span>Us</span>
         </h1>
         <p>
-          We are an international financial company engaged in investment
-          activities, which are related to trading on financial markets and
-          cryptocurrency exchanges performed by qualified professional traders.
+          It is a virtual investment platform. But we invest your investments in
+          many places. We try to give good profit to everyone through advanced
+          technology. Not everyone has to invest here. Anyone can establish
+          himself by working as a promoter and earn salary every month. Our aim
+          is to create a millionaire from every country and eradicate poverty
+          from every country, as well as create jobs.
         </p>
 
-        <p>
-          Our goal is to provide our investors with a reliable source of high
-          income, while minimizing any possible risks and offering a
-          high-quality service, allowing us to automate and simplify the
-          relations between the investors and the trustees. We work towards
-          increasing your profit margin by profitable investment. We look
-          forward to you being part of our community.
-        </p>
-        
-        <btn>MORE INFO</btn>
+        {/* <btn>MORE INFO</btn> */}
       </div>
     </div>
   );

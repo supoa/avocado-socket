@@ -37,13 +37,13 @@ const Navbar = () => {
         >
           Plan
         </div>
-        <div
+        {/* <div
           style={{ color: `${router.asPath == "/#contact" ? "gold" : ""}` }}
           className={styles.item}
           onClick={() => router.push("/#contact")}
         >
           Contact
-        </div>
+        </div> */}
         {userInfo && (
           <div
             style={{
@@ -128,13 +128,13 @@ const Navbar = () => {
             >
               Plan
             </div>
-            <div
+            {/* <div
               style={{ color: `${router.asPath == "/#contact" ? "gold" : ""}` }}
               className={styles.item}
               onClick={() => router.push("/#contact")}
             >
               Contact
-            </div>
+            </div> */}
           </div>
 
           <div className={styles.nav__right}>

@@ -16,7 +16,7 @@ const Header = () => {
         backgroundPosition: "center",
       }}
     >
-      <motion.div
+      <div
         initial={{ opacity: 0 }}
         whileInView={{
           opacity: 1,
@@ -38,7 +38,7 @@ const Header = () => {
         <btn className={styles.btn} onClick={() => router.push("/login")}>
           SIGN UP
         </btn>
-      </motion.div>
+      </div>
       <div className={styles.right}>
         {/* <Image
           src="/images/crypto1.jpg"

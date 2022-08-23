@@ -19,12 +19,12 @@ const Footer = () => {
         {" "}
         <div className={styles.left}>
           <logo></logo>
-          <div className={styles.name}>CryptoCade</div>
+          <div className={styles.name}>AvoCado</div>
         </div>
         <div className={styles.mid}>
           <div className={styles.contact}>Contact Us</div>
           <div className={styles.email}>
-            Eamil us : <span> testEmail@gmail.com</span>
+            Eamil us : <span> supoa4470@gmail.com</span>
           </div>
           {/* <div className={styles.telegram}>
             Telegram : Click <span>Here</span> to contact use
@@ -63,14 +63,12 @@ const Footer = () => {
             Your investments are your responsibility
           </h3>
           <p>
-            We do not accept any liability for any loss or damage which is
-            incurred from you acting or not acting as a result of reading any of
-            our publications. You acknowledge that you use the information we
-            provide at your own risk. MyCryptoParadise does not offer investment
-            advice and nothing in the calls we make should be construed as
-            investment advice. MyCryptoParadise provides information and
-            education based on our own trades. You are paying to follow our
-            trades that we document for educational purposes.
+            It is a virtual investment platform. But we invest your investments
+            in many places. We try to give good profit to everyone through
+            advanced technology. Not everyone has to invest here. Anyone can
+            establish himself by working as a promoter and earn salary every
+            month. Our aim is to create a millionaire from every country and
+            eradicate poverty from every country, as well as create jobs.
           </p>
           {/* <div className={styles.flex}>
             <span>Terms & Condition</span>

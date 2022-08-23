@@ -8,7 +8,6 @@ import { login } from "../redux/userSlice";
 import CircularProgress from "@mui/material/CircularProgress";
 import Head from "next/head";
 
-
 const Login = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -59,6 +58,7 @@ const Login = () => {
       console.log(data);
     } catch (error) {
       setLoading(false);
+      setError(error.message);
       setError(error);
       console.log(error);
     }

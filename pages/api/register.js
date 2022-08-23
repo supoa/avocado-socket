@@ -9,6 +9,7 @@ const handler = nc();
 
 handler.post(async (req, res) => {
   try {
+    console.log(req.body.password);
     await db.connect();
     const newUser = new User({
       ...req.body,

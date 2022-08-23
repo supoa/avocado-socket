@@ -24,6 +24,8 @@ li {
 :root {
   --primary: #cca354;
   --secondary: rgb(249, 199, 0);
+  /* --primary: rgb(0, 127, 237);
+  --secondary: skyblue; */
   --font: white;
 
   --btn-font: black;
@@ -53,7 +55,6 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
 
 input {
   color: white;

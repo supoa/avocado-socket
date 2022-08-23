@@ -1,7 +1,6 @@
 .wrapper {
   text-align: center;
   padding: 15px;
-
 }
 
 .image__container {
@@ -14,6 +13,7 @@
   justify-content: center;
   gap: 25px;
   padding: 45px 0;
+  flex-wrap: wrap;
 }
 
 .image__container img {
@@ -24,6 +24,32 @@
   border: 1px solid gold;
   box-shadow: 3px 3px 3px 3px rgb(71, 62, 2);
   overflow: hidden;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
+  min-height: 400px;
+  min-width: 290px;
+  justify-content: center;
+}
+
+.price {
+  font-size: 150%;
+  font-weight: bold;
+  color: var(--secondary);
+  border-bottom: 1px solid gold;
+}
+
+.benifit,
+.pay,
+.duration,
+.reward,
+.price {
+  padding-bottom: 25px;
+  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid gold;
+  min-width: 250px;
 }
 
 .image__wrapper:hover {

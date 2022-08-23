@@ -29,7 +29,7 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         }
       );
-      
+
       setProfileData((prev) => ({ ...prev, ...data }));
       setImage(null);
       setOpen(false);
@@ -95,7 +95,6 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
       >
         {userInfo._id == router.query.id && (
           <>
-            {" "}
             <input
               type="text"
               placeholder="Name"
@@ -110,7 +109,7 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
             />
             <input
               type="file"
-              placeholder="Image"
+              placeholder="file"
               onChange={(e) => {
                 setFile(e.target.files[0]);
                 handleFile(e.target.files[0]);

@@ -4,6 +4,8 @@ import styles from "../styles/Table.module.css";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
+
+
 const Table = ({ users }) => {
   const [query, setQuery] = useState("");
   const router = useRouter();
@@ -18,7 +20,7 @@ const Table = ({ users }) => {
       />
       <div className={styles.table__wrapper}>
         <table className={styles.table}>
-          <motion.tr
+          <tr
             initial={{ opacity: 0 }}
             whileInView={{
               opacity: 1,
@@ -27,22 +29,23 @@ const Table = ({ users }) => {
           >
             <th>User</th>
             <th>Email</th>
+            <th>Rank</th>
             <th>NID</th>
             <th>JOIN</th>
-            <th>Payment History</th>
+            <th>FIL</th>
+            <th>LTC</th>
+            <th>BNB</th>
+            <th>Package</th>
             <th>Country</th>
-            <th>Revinue</th>
-            <th>Direct Member</th>
-            <th>Team Member</th>
-            <th>Total Assets</th>
-            <th>Purchase</th>
-          </motion.tr>
+            <th>Revenue</th>
+            <th>Team</th>
+          </tr>
           {users
             .filter((user) =>
               user.name.toLowerCase().includes(query.toLowerCase())
             )
             .map((user) => (
-              <motion.tr
+              <tr
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{
                   opacity: 1,
@@ -60,13 +63,16 @@ const Table = ({ users }) => {
                 <td>{user.email}</td>
                 <td>{user.Nid}</td>
                 <td>{user.Join}</td>
-                <td>{user.paymentHistory}</td>
+                <td>{user.fil}</td>
+                <td>{user.ltc}</td>
+                <td>{user.bnb}</td>
+                {/* <td>{user.paymentHistory}</td> */}
                 <td>{user.country}</td>
                 <td>{user.revenue}</td>
                 <td>{user.teamMembers}</td>
                 <td>{user.totalAsset}</td>
                 <td>{user.Purchase}</td>
-              </motion.tr>
+              </tr>
             ))}
         </table>
       </div>
