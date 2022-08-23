@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import Head from "next/head";
 const Login = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -39,6 +39,9 @@ const Login = () => {
 
   return (
     <div className={styles.wrapper}>
+      <Head>
+        <title>Login To Avocado</title>
+      </Head>
       <div className={styles.box}>
         <div className={styles.top}>
           <h2>

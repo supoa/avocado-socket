@@ -4,6 +4,7 @@ import styles from "../../styles/Profile.module.css";
 import ProfilePost from "../../components/ProfiePost";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import Head from "next/head";
 const Profile = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const router = useRouter();
@@ -17,6 +18,9 @@ const Profile = () => {
 
   return (
     <div className={styles.wrapper}>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <ProfileInfo userInfo={userInfo} />
       <ProfilePost userInfo={userInfo} />
     </div>

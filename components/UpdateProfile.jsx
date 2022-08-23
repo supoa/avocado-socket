@@ -29,7 +29,7 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         }
       );
-
+      
       setProfileData((prev) => ({ ...prev, ...data }));
       setImage(null);
       setOpen(false);
