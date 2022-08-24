@@ -4,14 +4,20 @@ import styles from "../styles/Table.module.css";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
-
-
 const Table = ({ users }) => {
   const [query, setQuery] = useState("");
   const router = useRouter();
 
   return (
-    <div className={styles.table__container}>
+    <div
+      // style={{
+      //   backgroundImage:
+      //     "url('https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=955&q=80')",
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      // }}
+      className={styles.table__container}
+    >
       <input
         type="text"
         className={styles.field}

@@ -114,6 +114,13 @@
   background-color: rgb(36, 35, 35, 0.2);
 }
 
+.loading {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
   .box {
     display: grid;

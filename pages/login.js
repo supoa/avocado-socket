@@ -46,7 +46,7 @@ const Login = () => {
       <div className={styles.box}>
         <div className={styles.top}>
           <h2>
-            Welcome To <span>HYLIPLAB</span>
+            Welcome To <span>AVOCADO</span>
           </h2>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus

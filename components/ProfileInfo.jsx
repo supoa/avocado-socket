@@ -139,7 +139,9 @@ const ProfileInfo = ({ userInfo }) => {
           )}
         </div>
       ) : (
-        <></>
+        <div className={styles.loading}>
+          <CircularProgress />
+        </div>
       )}
     </>
   );
