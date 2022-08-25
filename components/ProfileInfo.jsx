@@ -41,6 +41,10 @@ const ProfileInfo = ({ userInfo }) => {
       setLoading(false);
 
       router.push("/admin");
+      if (userInfo._id == router.query.id) {
+        router.push("/login");
+        dispatch(logout());
+      }
     } catch (error) {
       console.log(error);
       setLoading(false);

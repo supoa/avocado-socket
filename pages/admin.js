@@ -12,6 +12,7 @@ const Admin = () => {
   const [users, setUsers] = useState([]);
   const userInfo = useSelector((state) => state.user.userInfo);
   const router = useRouter();
+
   const makeConnection = async () => {
     try {
       const { data } = await axios.post("/api/admin/connection");
