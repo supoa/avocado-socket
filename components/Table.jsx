@@ -62,8 +62,10 @@ const Table = ({ users }) => {
                 className={styles.row}
               >
                 <td onClick={() => router.push(`/profile/${user._id}`)}>
-                  {user.picture && (
+                  {user.picture ? (
                     <Image src={user?.picture} width={30} height={30} alt="" />
+                  ) : (
+                    <Image src="/avatar.png" width={30} height={30} alt="" />
                   )}
                   <span>{user.name}</span>
                 </td>
