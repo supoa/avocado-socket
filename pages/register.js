@@ -87,7 +87,7 @@ const Login = () => {
           <p>
             Invest in an Industry Leader, Professional, and Reliable Company. We
             provide you with the most necessary features that will make your
-            experience better{" "}
+            experience better
           </p>
         </div>
         <form className={styles.form__container}>
