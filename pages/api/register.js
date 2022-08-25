@@ -11,6 +11,10 @@ handler.post(async (req, res) => {
   try {
     console.log(req.body.password);
     await db.connect();
+    const exist = await User.findOne({ email: req.body.email });
+    if (exist) {
+      throw new Error("User already Exist");
+    }
     const newUser = new User({
       ...req.body,
       password: bcrypt.hashSync(req.body.password),

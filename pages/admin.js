@@ -38,7 +38,7 @@ const Admin = () => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       });
-      setUsers(data);
+      setUsers(data.reverse());
     } catch (error) {
       console.log(error);
     }
@@ -54,17 +54,14 @@ const Admin = () => {
   }, []);
 
   return (
-    <div
-      className={styles.wrapper}
-
-    >
+    <div className={styles.wrapper}>
       <Head>
         <title>Admin Dashboard</title>
       </Head>
       <h1>Welcome To Your Dashboard</h1>
 
       <div className={styles.table__wrapper}>
-        {users ? (
+        {users.length > 0 ? (
           <Table users={users} setUsers={setUsers} />
         ) : (
           <>

@@ -54,8 +54,8 @@
 }
 
 .table__container table td:first-child span:hover {
-  /* color: var(--secondary); */
-  color: black;
+  color: var(--secondary);
+  /* color: black; */
 }
 
 .table__container table td:first-child span {

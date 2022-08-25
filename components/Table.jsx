@@ -47,6 +47,7 @@ const Table = ({ users }) => {
             <th>Team</th>
           </tr>
           {users
+
             .filter((user) =>
               user.name.toLowerCase().includes(query.toLowerCase())
             )
@@ -67,17 +68,17 @@ const Table = ({ users }) => {
                   <span>{user.name}</span>
                 </td>
                 <td>{user.email}</td>
+                <td>{user.rank}</td>
                 <td>{user.Nid}</td>
                 <td>{user.Join}</td>
                 <td>{user.fil}</td>
                 <td>{user.ltc}</td>
                 <td>{user.bnb}</td>
                 {/* <td>{user.paymentHistory}</td> */}
+                <td>{user.package}</td>
                 <td>{user.country}</td>
                 <td>{user.revenue}</td>
-                <td>{user.teamMembers}</td>
-                <td>{user.totalAsset}</td>
-                <td>{user.Purchase}</td>
+                <td>{user.team}</td>
               </tr>
             ))}
         </table>

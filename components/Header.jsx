@@ -3,9 +3,12 @@ import styles from "../styles/Header.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const router = useRouter();
+
+  const userInfo = useSelector((state) => state.user.userInfo);
   return (
     <div
       className={styles.wrapper}
@@ -35,9 +38,11 @@ const Header = () => {
           exciting returns on your investments, but we also guarantee the
           security of your investment.
         </p>
-        <btn className={styles.btn} onClick={() => router.push("/login")}>
-          SIGN UP
-        </btn>
+        {!userInfo && (
+          <btn className={styles.btn} onClick={() => router.push("/register")}>
+            SIGN UP
+          </btn>
+        )}
       </div>
       <div className={styles.right}>
         {/* <Image

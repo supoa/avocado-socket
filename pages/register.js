@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/Auth.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -23,6 +23,14 @@ const Login = () => {
   const [bnb, setBnb] = useState("");
   const [errors, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const userInfo = useSelector((state) => state.user.userInfo);
+
+  useEffect(() => {
+    if (userInfo) {
+      router.push("/");
+    }
+  }, []);
 
   const handleSubmit = async () => {
     if (
@@ -59,7 +67,6 @@ const Login = () => {
     } catch (error) {
       setLoading(false);
       setError(error.message);
-      setError(error);
       console.log(error);
     }
   };
@@ -75,8 +82,9 @@ const Login = () => {
             Welcome To <span>AVOCADO</span>
           </h2>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus
-            distinctio deserunt impedit similique debitis voluptatum enim.
+            Invest in an Industry Leader, Professional, and Reliable Company. We
+            provide you with the most necessary features that will make your
+            experience better{" "}
           </p>
         </div>
         <form className={styles.form__container}>

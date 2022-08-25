@@ -26,6 +26,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  cursor: pointer;
   background: blue;
   height: 100%;
   padding: 0 5px;

@@ -19,7 +19,7 @@ const Footer = () => {
         {" "}
         <div className={styles.left}>
           <logo></logo>
-          <div className={styles.name}>AvoCado</div>
+          <div className={styles.name}>Avocado</div>
         </div>
         <div className={styles.mid}>
           <div className={styles.contact}>Contact Us</div>
