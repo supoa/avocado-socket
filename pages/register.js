@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
 import CircularProgress from "@mui/material/CircularProgress";
 import Head from "next/head";
+import { validate } from "email-validator";
 
 const Login = () => {
   const router = useRouter();
@@ -35,6 +36,7 @@ const Login = () => {
   const handleSubmit = async () => {
     if (
       email.trim() == "" ||
+      !validate(email.trim()) ||
       name.trim() == "" ||
       country.trim() == "" ||
       fil.trim() == "" ||
@@ -46,6 +48,7 @@ const Login = () => {
       setError("Please enter All The Field Correctly");
       return;
     }
+
 
     try {
       setLoading(true);
