@@ -23,8 +23,9 @@ const Footer = () => {
         </div>
         <div className={styles.mid}>
           <div className={styles.contact}>Contact Us</div>
+          <b className={styles.place}>palacio de Bellas Artes,Mexico City</b>
           <div className={styles.email}>
-            Eamil us : <span> supoa4470@gmail.com</span>
+            Support : <span> supoa4470@gmail.com</span>
           </div>
           {/* <div className={styles.telegram}>
             Telegram : Click <span>Here</span> to contact use
