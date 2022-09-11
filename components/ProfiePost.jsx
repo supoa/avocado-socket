@@ -21,6 +21,8 @@ const ProfiePost = ({ userInfo }) => {
   const [progresspercent, setProgresspercent] = useState(0);
   const router = useRouter();
 
+  console.log(posts);
+
   const fetch = async () => {
     try {
       const { data } = await axios.get(`/api/profile/${router.query.id}`, {
@@ -28,6 +30,7 @@ const ProfiePost = ({ userInfo }) => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       });
+      console.log({ data });
 
       setPosts(data);
       setFile("");
@@ -125,7 +128,7 @@ const ProfiePost = ({ userInfo }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
-        Structure for your
+        Structure for you
         {userInfo?.isAdmin && (
           <div className={styles.plus} onClick={() => setFormOpen(true)}>
             +

@@ -12,7 +12,7 @@ handler.use(isAuth);
 //get specific user profile structure information data
 handler.get(async (req, res) => {
   console.log("requesting");
-  if (req.user.isAdmin == true || req.user._id == req.query._id) {
+  if (req.user.isAdmin == true || req.user._id == req.query.id) {
     try {
       await db.connect();
       const structure = await Structure.find({ userId: req.query.id }).sort({
@@ -24,9 +24,9 @@ handler.get(async (req, res) => {
       console.log(error);
       return res.send(error);
     }
+  } else {
+    return res.send({ msg: "not authenticated or  Not admin user" });
   }
-
-  return res.send({ msg: "not authenticated or  Not admin user" });
 });
 
 handler.use(isAuth, isAdmin);
