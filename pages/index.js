@@ -11,6 +11,8 @@ import Footer from "../components/Footer";
 import About from "../components/About";
 import Plan from "../components/Plan";
 import Announcement from "../components/Announcement";
+import { Upcomming } from "../components/Upcomming";
+import Gallery from "../components/Gallery";
 
 export default function Home() {
   return (
@@ -48,6 +50,8 @@ export default function Home() {
         <Announcement />
         <About />
         <Plan />
+        {/* <Gallery /> */}
+        {/* <Upcomming /> */}
       </main>
 
       <footer className={styles.footer}></footer>

@@ -22,6 +22,9 @@ const userSchema = new mongoose.Schema(
     package: { type: String },
     announcement: { type: String },
     team: { type: String },
+    NNID: { type: String },
+    NEmail: { type: String },
+    workingDays: { type: String },
   },
   {
     timestamps: true,

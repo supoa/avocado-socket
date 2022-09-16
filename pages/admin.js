@@ -70,6 +70,10 @@ const Admin = () => {
           </>
         )}
       </div>
+      <div className={styles.tools}>
+        <div className={styles.terms}></div>
+        <div className={styles.background}></div>
+      </div>
     </div>
   );
 };

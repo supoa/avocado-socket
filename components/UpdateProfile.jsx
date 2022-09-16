@@ -163,6 +163,18 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
             />
             <input
               type="text"
+              placeholder="Nominee NID"
+              onChange={(e) => setProfile({ ...profile, NNID: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Nominee Email"
+              onChange={(e) =>
+                setProfile({ ...profile, NEmail: e.target.value })
+              }
+            />
+            <input
+              type="text"
               placeholder="Announcement"
               onChange={(e) =>
                 setProfile({ ...profile, announcement: e.target.value })

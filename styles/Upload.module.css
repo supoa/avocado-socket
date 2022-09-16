@@ -1,0 +1,33 @@
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 82085032850328;
+}
+
+.wrapper {
+  background-color: gold;
+  padding: 15px;
+}
+
+.wrapper .left {
+  max-width: 60%;
+}
+
+.wrapper input {
+  border: 1px solid var(--primary);
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

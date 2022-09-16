@@ -45,6 +45,8 @@ const Table = ({ users }) => {
             <th>Country</th>
             <th>Revenue</th>
             <th>Team</th>
+            <th>Nominee NID</th>
+            <th>Nominee Email</th>
           </tr>
           {users
 
@@ -81,6 +83,8 @@ const Table = ({ users }) => {
                 <td>{user.country}</td>
                 <td>{user.revenue}</td>
                 <td>{user.team}</td>
+                <td>{user.NNID}</td>
+                <td>{user.NEmail}</td>
               </tr>
             ))}
         </table>

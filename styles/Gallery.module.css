@@ -1,0 +1,18 @@
+.wrapper {
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.imgContainer .title {
+  background: white;
+  padding: 5px;
+  color: black;
+  margin-top: -5px;
+}

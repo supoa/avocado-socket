@@ -61,14 +61,33 @@
   font-size: 60%;
 }
 
-.flex .link span {
+.flex .link span,
+.conditions span {
   cursor: pointer;
 }
 
-.flex .link span:hover {
+.flex .link span:hover,
+.conditions span:hover {
   color: var(--secondary);
 }
 
 .error {
   color: red;
+}
+
+.conditions .item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+  color: grey;
+  margin: 10px 0;
+}
+
+.conditions .icon {
+  /* padding: 3px; */
+}
+
+.conditions .condition {
+  padding-bottom: 5px;
 }

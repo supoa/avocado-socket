@@ -38,6 +38,20 @@ const Navbar = () => {
           Plan
         </div>
         {/* <div
+          style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
+          className={styles.item}
+          onClick={() => router.push("/#plan")}
+        >
+          Background
+        </div>
+        <div
+          style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
+          className={styles.item}
+          onClick={() => router.push("/#plan")}
+        >
+          Payment Method
+        </div> */}
+        {/* <div
           style={{ color: `${router.asPath == "/#contact" ? "gold" : ""}` }}
           className={styles.item}
           onClick={() => router.push("/#contact")}

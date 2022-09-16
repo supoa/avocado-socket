@@ -2,8 +2,36 @@ import React from "react";
 import styles from "../styles/Footer.module.css";
 import Image from "next/image";
 import CopyrightIcon from "@mui/icons-material/Copyright";
+import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import Term from "./Upload/Term";
+import { useEffect } from "react";
+import axios from "axios";
+import { setTerms } from "../redux/termSlice";
 
 const Footer = () => {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const userInfo = useSelector((state) => state.user.userInfo);
+  const terms = useSelector((state) => state.terms.terms);
+
+  const dispatch = useDispatch();
+  console.log({ terms });
+
+  const fetch = async () => {
+    try {
+      const { data } = await axios.get("/api/terms");
+      dispatch(setTerms(data[0]));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetch();
+  }, [router.asPath]);
+
   return (
     <div
       className={styles.wrapper}
@@ -71,16 +99,27 @@ const Footer = () => {
             month. Our aim is to create a millionaire from every country and
             eradicate poverty from every country, as well as create jobs.
           </p>
-          {/* <div className={styles.flex}>
-            <span>Terms & Condition</span>
+          <div className={styles.flex}>
+            <span onClick={() => terms?.content && router.push(terms.content)}>
+              Terms & Condition
+            </span>
+            {userInfo?.isAdmin && (
+              <span className={styles.plus} onClick={() => setOpen(true)}>
+                +
+              </span>
+            )}
             <span>Privacy</span>
-          </div> */}
+          </div>
         </div>
       </div>
       <div className={styles.rights}>
         <CopyrightIcon style={{ fontSize: "130%" }} />
         2022 All Rights Reserved
       </div>
+
+      {open && (
+        <Term setOpen={setOpen} userInfo={userInfo} setTerms={setTerms} />
+      )}
     </div>
   );
 };

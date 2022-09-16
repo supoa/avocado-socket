@@ -25,6 +25,7 @@ const ProfiePost = ({ userInfo }) => {
 
   const fetch = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get(`/api/profile/${router.query.id}`, {
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
@@ -34,6 +35,7 @@ const ProfiePost = ({ userInfo }) => {
 
       setPosts(data);
       setFile("");
+      setLoading(false);
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -124,11 +126,12 @@ const ProfiePost = ({ userInfo }) => {
   useEffect(() => {
     fetch();
   }, [router.query.id]);
+  
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
-        Structure for you
+        {loading ? <>laoding...</> : <> Structure for you ({posts.length})</>}
         {userInfo?.isAdmin && (
           <div className={styles.plus} onClick={() => setFormOpen(true)}>
             +
@@ -162,7 +165,7 @@ const ProfiePost = ({ userInfo }) => {
       )}
 
       <div className={styles.posts}>
-        {posts.length > 0 &&
+        {!loading ? (
           posts.map((post) => (
             <div className={styles.post}>
               {post.content && (
@@ -174,7 +177,12 @@ const ProfiePost = ({ userInfo }) => {
                 </div>
               )}
             </div>
-          ))}
+          ))
+        ) : (
+          <div className={styles.loading}>
+            <CircularProgress />
+          </div>
+        )}
       </div>
     </div>
   );

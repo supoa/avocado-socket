@@ -7,7 +7,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
 import CircularProgress from "@mui/material/CircularProgress";
 import Head from "next/head";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { validate } from "email-validator";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
 const Login = () => {
   const router = useRouter();
@@ -16,6 +18,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [pic, setPic] = useState("");
+  const [read, setRead] = useState(false);
+  const [agreed, setAgreed] = useState(false);
+
   // const [payMentMethod, setPaymentMethod] = useState("");
   const [country, setCountry] = useState("");
   const [Nid, setNid] = useState("");
@@ -24,9 +29,11 @@ const Login = () => {
   const [bnb, setBnb] = useState("");
   const [errors, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [NEmail, SetNEmail] = useState("");
+  const [NNid, setNNid] = useState("");
 
   const userInfo = useSelector((state) => state.user.userInfo);
-
+  const terms = useSelector((state) => state.terms.terms);
   useEffect(() => {
     if (userInfo) {
       router.push("/");
@@ -49,6 +56,10 @@ const Login = () => {
       return;
     }
 
+    if (!agreed || !read) {
+      setError("You Must Have to go throw our Term and Conditions");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -132,16 +143,64 @@ const Login = () => {
 
           <input
             type="text"
-            placeholder="BNB(BEP2)"
+            placeholder="BNB(BEP20)"
             onChange={(e) => setBnb(e.target.value)}
           />
+          <input
+            type="text"
+            placeholder="Nominee Email"
+            onChange={(e) => setNEmail(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Nominee NID"
+            onChange={(e) => setNNid(e.target.value)}
+          />
           {errors && <div className={styles.error}>{errors} </div>}
+          <div className={styles.conditions}>
+            <div className={styles.item}>
+              <div
+                className={styles.icon}
+                onClick={() => setRead((prev) => !prev)}
+              >
+                {read ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+              </div>
+              <div className={styles.condition}>
+                I have Already Read Avocados
+                <span
+                  className={styles.link}
+                  onClick={() => terms?.content && router.push(terms.content)}
+                >
+                  Terms and Condition
+                </span>
+              </div>
+            </div>
+            <div className={styles.item}>
+              <div
+                className={styles.icon}
+                onClick={() => setAgreed((prev) => !prev)}
+              >
+                {agreed ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+              </div>
+              <div className={styles.condition}>
+                I agree to The
+                <span
+                  className={styles.link}
+                  onClick={() => terms?.content && router.push(terms.content)}
+                >
+                  {" "}
+                  Terms of Service
+                </span>
+              </div>
+            </div>
+          </div>
           <div className={styles.flex}>
             {loading ? (
               <CircularProgress />
             ) : (
               <btn onClick={() => handleSubmit()}>Sign Up Now</btn>
             )}
+
             <div className={styles.link}>
               Already have Account ?
               <span onClick={() => router.push("/login")}>Login</span>

@@ -128,6 +128,15 @@ const ProfileInfo = ({ userInfo }) => {
             <div className={styles.item}>
               Announcement: <span>{profileData.announcement}</span>
             </div>
+            <div className={styles.item}>
+              Nominee NID: <span>{profileData.NNID}</span>
+            </div>
+            <div className={styles.item}>
+              Nominee Email: <span>{profileData.NEmail}</span>
+            </div>
+            <div className={styles.item}>
+              Working Days: <span>{profileData.workignDays}</span>
+            </div>
           </div>
           {open && (
             <div className={styles.profile__update}>
