@@ -64,19 +64,13 @@ const Plan = () => {
         To make a solid investment, you have to know where you are investing.
         Find a plan which is best for you.
       </motion.p>
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{
-          opacity: 1,
-          transition: { duration: 0.5 },
-        }}
-        className={styles.image__container}
-      >
+      <motion.div className={styles.image__container}>
         {plans.map((plan) => (
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{
+            initial={{ opacity: 0, y: 100 }}
+            animate={{
               opacity: 1,
+              y: 0,
               transition: { duration: 0.5 },
             }}
             style={{

@@ -135,7 +135,12 @@ const Navbar = () => {
             className={styles.profile}
             onClick={() => router.push(`/profile/${userInfo._id}`)}
           >
-            {userInfo.name}
+            <Image
+              src={userInfo.picture}
+              width={40}
+              height={40}
+              style={{ borderRadius: "50%" }}
+            />
           </div>
         ) : (
           <>
@@ -162,11 +167,31 @@ const Navbar = () => {
         </div>
       )}
       {open && (
-        <div className={styles.nav__vertical}>
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{
+            opacity: 1,
+            x: 0,
+            transition: { duration: 1 },
+          }}
+          className={styles.nav__vertical}
+        >
           <div className={styles.nav__items}>
             <div className={styles.icon} onClick={() => setOpen(false)}>
               <ClearIcon />
             </div>
+            {userInfo && (
+              <Image
+                src={userInfo.picture}
+                width={70}
+                height={70}
+                style={{
+                  borderRadius: "25px",
+                  margin: "10px 0",
+                }}
+                onClick={() => router.push(`/profile/${userInfo._id}`)}
+              />
+            )}
 
             <div
               style={{ color: `${router.asPath == "/" ? "gold" : ""}` }}
@@ -250,7 +275,7 @@ const Navbar = () => {
               </>
             )}
           </div>
-        </div>
+        </motion.div>
       )}
 
       {openBg && (

@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { storage } from "../utils/firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import CircularProgress from "@mui/material/CircularProgress";
+import { login } from "../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
   const [profile, setProfile] = useState(profileData);
@@ -13,6 +15,7 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
   const [file, setFile] = useState("");
   const [image, setImage] = useState();
   const [progresspercent, setProgresspercent] = useState(0);
+  const dispatch = useDispatch();
 
   console.log(progresspercent);
   const router = useRouter();
@@ -31,6 +34,10 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
       );
 
       setProfileData((prev) => ({ ...prev, ...data }));
+
+      router.query.id == userInfo._id &&
+        dispatch(login({ ...userInfo, picture: data.picture }));
+
       setImage(null);
       setOpen(false);
       setLoading(false);

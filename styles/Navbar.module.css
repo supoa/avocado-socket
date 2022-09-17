@@ -83,7 +83,7 @@
   .nav__vertical .nav__items {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
   }
 
   .nav__vertical .nav__right {
