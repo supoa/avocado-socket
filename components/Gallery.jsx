@@ -50,9 +50,11 @@ const Gallery = () => {
 
   return (
     <div className={styles.wrapper}>
-      <span className={styles.btn} onClick={() => setOpen(true)}>
-        +
-      </span>
+      {userInfo?.isAdmin && (
+        <span className={styles.btn} onClick={() => setOpen(true)}>
+          +
+        </span>
+      )}
       <h1>Events</h1>
       <div className={styles.gallery}>
         {gallery.map((image) => (
