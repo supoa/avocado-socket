@@ -4,16 +4,38 @@ export const termSlice = createSlice({
   name: "terms",
   initialState: {
     terms: {},
+    background: {},
+    paymentMethod: {},
+    gallery: [],
   },
 
   reducers: {
     setTerms: (state, action) => {
       state.terms = action.payload;
     },
+    setBackground: (state, action) => {
+      state.background = action.payload;
+    },
+    setPaymentMethod: (state, action) => {
+      state.background = action.payload;
+    },
+
+    setGallery: (state, action) => {
+      state.gallery = action.payload;
+    },
+
+    setGalleryImage: (state, action) => {
+      state.gallery = [action.payload, ...state.gallery];
+    },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { setTerms } = termSlice.actions;
+export const {
+  setTerms,
+  setBackground,
+  setPaymentMethod,
+  setGallery,
+  setGalleryImage,
+} = termSlice.actions;
 
 export default termSlice.reducer;

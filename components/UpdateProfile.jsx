@@ -175,6 +175,13 @@ const UpateProfile = ({ setOpen, userInfo, profileData, setProfileData }) => {
             />
             <input
               type="text"
+              placeholder="Workgin Days"
+              onChange={(e) =>
+                setProfile({ ...profile, workingDays: e.target.value })
+              }
+            />
+            <input
+              type="text"
               placeholder="Announcement"
               onChange={(e) =>
                 setProfile({ ...profile, announcement: e.target.value })

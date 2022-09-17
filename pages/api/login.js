@@ -24,6 +24,7 @@ handler.post(async (req, res) => {
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
+        picture: user.picture,
       });
     } else {
       console.log("geting");

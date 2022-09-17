@@ -29,8 +29,9 @@ const Login = () => {
   const [bnb, setBnb] = useState("");
   const [errors, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [NEmail, SetNEmail] = useState("");
   const [NNid, setNNid] = useState("");
+  const [NNID, setNNID] = useState("");
+  const [NEmail, setNEmail] = useState("");
 
   const userInfo = useSelector((state) => state.user.userInfo);
   const terms = useSelector((state) => state.terms.terms);
@@ -50,6 +51,9 @@ const Login = () => {
       bnb.trim() == "" ||
       ltc.trim() == "" ||
       Nid.trim() == "" ||
+      NEmail.trim() == "" ||
+      !validate(NEmail.trim()) ||
+      NNID.trim() == "" ||
       password == ""
     ) {
       setError("Please enter All The Field Correctly");
@@ -72,6 +76,8 @@ const Login = () => {
         fil,
         ltc,
         bnb,
+        NNID,
+        NEmail,
       });
       console.log(data);
       dispatch(login(data));
@@ -154,7 +160,7 @@ const Login = () => {
           <input
             type="text"
             placeholder="Nominee NID"
-            onChange={(e) => setNNid(e.target.value)}
+            onChange={(e) => setNNID(e.target.value)}
           />
           {errors && <div className={styles.error}>{errors} </div>}
           <div className={styles.conditions}>

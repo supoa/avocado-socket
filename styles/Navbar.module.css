@@ -52,7 +52,7 @@
 .icon {
   display: none;
 }
-@media (max-width: 570px) {
+@media (max-width: 760px) {
   .navbar .nav__items {
     display: none;
     margin-bottom: 20px;

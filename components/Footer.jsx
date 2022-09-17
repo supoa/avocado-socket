@@ -9,7 +9,7 @@ import Term from "./Upload/Term";
 import { useEffect } from "react";
 import axios from "axios";
 import { setTerms } from "../redux/termSlice";
-
+import { motion } from "framer-motion";
 const Footer = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -33,7 +33,13 @@ const Footer = () => {
   }, [router.asPath]);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        transition: { duration: 1 },
+      }}
       className={styles.wrapper}
       id="footer"
       // style={{
@@ -118,9 +124,14 @@ const Footer = () => {
       </div>
 
       {open && (
-        <Term setOpen={setOpen} userInfo={userInfo} setTerms={setTerms} />
+        <Term
+          setOpen={setOpen}
+          userInfo={userInfo}
+          setTerms={setTerms}
+          path="terms"
+        />
       )}
-    </div>
+    </motion.div>
   );
 };
 

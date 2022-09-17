@@ -50,7 +50,7 @@ export default function Home() {
         <Announcement />
         <About />
         <Plan />
-        {/* <Gallery /> */}
+        <Gallery />
         {/* <Upcomming /> */}
       </main>
 

@@ -54,8 +54,8 @@ const Table = ({ users }) => {
               user.name.toLowerCase().includes(query.toLowerCase())
             )
             .map((user) => (
-              <tr
-                initial={{ opacity: 0, x: 30 }}
+              <motion.tr
+                initial={{ opacity: 0 }}
                 whileInView={{
                   opacity: 1,
                   x: 0,
@@ -85,7 +85,7 @@ const Table = ({ users }) => {
                 <td>{user.team}</td>
                 <td>{user.NNID}</td>
                 <td>{user.NEmail}</td>
-              </tr>
+              </motion.tr>
             ))}
         </table>
       </div>

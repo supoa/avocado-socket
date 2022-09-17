@@ -15,10 +15,12 @@ handler.post(async (req, res) => {
     if (exist) {
       throw new Error("User already Exist");
     }
+
     const newUser = new User({
       ...req.body,
       password: bcrypt.hashSync(req.body.password),
     });
+
     const user = await newUser.save();
     await db.disconnect();
 
@@ -29,6 +31,7 @@ handler.post(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      picture: user.picture,
     });
   } catch (error) {
     console.log(error);

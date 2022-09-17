@@ -27,17 +27,29 @@ const Header = () => {
         }}
         className={styles.left}
       >
-        <h1>
+        <motion.h1
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            transition: { duration: 0.5 },
+          }}
+        >
           Invest for Future in Stable Platform
           <span> and Make Fast Money</span>
-        </h1>
-        <p>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            transition: { duration: 0.5 },
+          }}
+        >
           Invest in an Industry Leader, Professional, and Reliable Company. We
           provide you with the most necessary features that will make your
           experience better. Not only we guarantee the fastest and the most
           exciting returns on your investments, but we also guarantee the
           security of your investment.
-        </p>
+        </motion.p>
         {!userInfo && (
           <btn className={styles.btn} onClick={() => router.push("/register")}>
             SIGN UP

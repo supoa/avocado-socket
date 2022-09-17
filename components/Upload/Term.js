@@ -6,15 +6,28 @@ import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 import { storage } from "../../utils/firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import {
+  setBackground,
+  setGallery,
+  setGalleryImage,
+  setTerms,
+} from "../../redux/termSlice";
+import { useDispatch } from "react-redux";
 
-const Term = ({ setOpen, userInfo, setTerms }) => {
-  const [error, setError] = useState("");
-  const [imageUrl, setImgUrl] = useState("");
+const Term = ({ setOpen, userInfo, setTerms, path, gallery, updating }) => {
+  // const [error, setError] = useState("");
+  // const [imageUrl, setImgUrl] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(null);
+
   const [file, setFile] = useState("");
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(updating ? updating.content : "");
+  const [text, setText] = useState(updating ? updating.title : "");
+
+  const dispatch = useDispatch();
   const [progresspercent, setProgresspercent] = useState(0);
+  console.log({ path });
 
   const handleFile = (file, item) => {
     console.log("file upload starred");
@@ -54,10 +67,13 @@ const Term = ({ setOpen, userInfo, setTerms }) => {
     }
     try {
       setLoading(true);
+
       const { data } = await axios.post(
-        "/api/terms",
+        `/api/${path}`,
         {
           content: image,
+          title: text,
+          id: updating,
         },
         {
           headers: {
@@ -65,8 +81,52 @@ const Term = ({ setOpen, userInfo, setTerms }) => {
           },
         }
       );
+
       console.log({ data });
-      setTerms(data);
+      path == "terms" && dispatch(setTerms(data));
+      path == "background" && dispatch(setBackground(data));
+      path == "gallery" && dispatch(setGalleryImage(data));
+
+      setLoading(false);
+      setOpen(false);
+      setFile(null);
+      setImage(null);
+      //   setPosts((prev) => [data, ...posts]);
+    } catch (error) {
+      setLoading(false);
+      setLoading(true);
+
+      console.log(error);
+    }
+  };
+
+  const handleUpdate = async () => {
+    if (!image & !text) {
+      return;
+    }
+    try {
+      setLoading(true);
+
+      const { data } = await axios.put(
+        `/api/${path}`,
+        {
+          content: image,
+          title: text,
+          id: updating._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
+
+      console.log({ data });
+      // path == "terms" && dispatch(setTerms(data));
+      // path == "background" && dispatch(setBackground(data));
+      console.log({ data });
+      path == "gallery" && dispatch(setGallery(data));
+
       setLoading(false);
       setOpen(false);
       setFile(null);
@@ -90,11 +150,22 @@ const Term = ({ setOpen, userInfo, setTerms }) => {
             handleFile(e.target.files[0]);
           }}
         />
+        {gallery && (
+          <input
+            type="text"
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+          />
+        )}
+
         <div className={styles.flex}>
           {uploading || loading ? (
             <CircularProgress />
           ) : (
-            <btn onClick={() => handleSubmit()}>Submit</btn>
+            <btn onClick={() => (updating ? handleUpdate() : handleSubmit())}>
+              Submit
+            </btn>
           )}
           <btn style={{ background: "red" }} onClick={() => setOpen(false)}>
             Cancel

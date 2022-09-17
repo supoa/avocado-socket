@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../styles/Plan.module.css";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const plans = [
   { price: "8000 $", benifit: "6.5X", duration: "330 days", pay: "17 times" },
@@ -44,16 +45,40 @@ const plans = [
 const Plan = () => {
   return (
     <div className={styles.wrapper} id="plan">
-      <h1>
+      <motion.h1
+        initial={{ opacity: 0 }}
+        whileInView={{
+          opacity: 1,
+          transition: { duration: 0.5 },
+        }}
+      >
         Investment <span>Plans</span>{" "}
-      </h1>
-      <p>
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{
+          opacity: 1,
+          transition: { duration: 0.5 },
+        }}
+      >
         To make a solid investment, you have to know where you are investing.
         Find a plan which is best for you.
-      </p>
-      <div className={styles.image__container}>
+      </motion.p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{
+          opacity: 1,
+          transition: { duration: 0.5 },
+        }}
+        className={styles.image__container}
+      >
         {plans.map((plan) => (
-          <div
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{
+              opacity: 1,
+              transition: { duration: 0.5 },
+            }}
             style={{
               backgroundImage:
                 "url('https://template.viserlab.com/hyiplab/demo/assets/images/bg/bg-4.png')",
@@ -69,9 +94,9 @@ const Plan = () => {
             {plan.reward && (
               <div className={styles.reward}>Reward : {plan.reward}</div>
             )}
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

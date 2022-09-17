@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/About.module.css";
-
+import { motion } from "framer-motion";
 const About = () => {
   return (
     <div
@@ -15,17 +15,30 @@ const About = () => {
     >
       <div className={styles.left}></div>
       <div className={styles.right}>
-        <h1>
+        <motion.h1
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            transition: { duration: 0.5 },
+          }}
+        >
           About <span>Us</span>
-        </h1>
-        <p>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            transition: { duration: 0.5 },
+          }}
+        >
           It is a virtual investment platform. But we invest your investments in
           many places. We try to give good profit to everyone through advanced
           technology. Not everyone has to invest here. Anyone can establish
           himself by working as a promoter and earn salary every month. Our aim
           is to create a millionaire from every country and eradicate poverty
           from every country, as well as create jobs.
-        </p>
+        </motion.p>
 
         {/* <btn>MORE INFO</btn> */}
       </div>

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 // import notice from "../data/notice";
 import { useSelector } from "react-redux";
-
+import { motion } from "framer-motion";
 const Announcement = () => {
   const [notice, setNotice] = useState();
   const [content, setContent] = useState("");
@@ -44,7 +44,14 @@ const Announcement = () => {
   }, [router.asPath]);
 
   return (
-    <div className={styles.wrapper}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{
+        opacity: 1,
+        transition: { duration: 0.5 },
+      }}
+      className={styles.wrapper}
+    >
       <h1>Announcement</h1>
       <p>{notice?.content}</p>
       {userInfo?.isAdmin && (
@@ -61,7 +68,7 @@ const Announcement = () => {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

@@ -8,6 +8,7 @@ import { logout } from "../redux/userSlice";
 import { useRouter } from "next/router";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CircularProgress from "@mui/material/CircularProgress";
+import { motion } from "framer-motion";
 
 const ProfileInfo = ({ userInfo }) => {
   const [open, setOpen] = useState(false);
@@ -58,8 +59,22 @@ const ProfileInfo = ({ userInfo }) => {
   return (
     <>
       {profileData ? (
-        <div className={styles.wrapper}>
-          <div className={styles.profile__photo}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            transition: { duration: 0.5 },
+          }}
+          className={styles.wrapper}
+        >
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{
+              opacity: 1,
+              transition: { duration: 1 },
+            }}
+            className={styles.profile__photo}
+          >
             {profileData.picture ? (
               <Image
                 src={profileData.picture}
@@ -71,7 +86,7 @@ const ProfileInfo = ({ userInfo }) => {
               <Image src="/avatar.png" width="200px" height="200px" alt="" />
             )}
             <div className={styles.photo__wrapper}></div>
-          </div>
+          </motion.div>
           <div className={styles.profile__name}>{profileData.name}</div>
           <div className={styles.profile__email}> {profileData.email}</div>
           <btn onClick={() => setOpen(true)}>Update Profile</btn>
@@ -135,7 +150,7 @@ const ProfileInfo = ({ userInfo }) => {
               Nominee Email: <span>{profileData.NEmail}</span>
             </div>
             <div className={styles.item}>
-              Working Days: <span>{profileData.workignDays}</span>
+              Working Days: <span>{profileData.workingDays}</span>
             </div>
           </div>
           {open && (
@@ -150,7 +165,7 @@ const ProfileInfo = ({ userInfo }) => {
               }
             </div>
           )}
-        </div>
+        </motion.div>
       ) : (
         <div className={styles.loading}>
           <CircularProgress />

@@ -4,14 +4,40 @@ import { useRouter } from "next/router";
 import MenuIcon from "@mui/icons-material/Menu";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useSelector } from "react-redux";
+import Term from "./Upload/Term";
+import axios from "axios";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Navbar = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const userInfo = useSelector((state) => state.user.userInfo);
+  const [openBg, setOpenBg] = useState(false);
+  const [openPayment, setOpenPayment] = useState(false);
+
+  const download = async (path) => {
+    try {
+      const { data } = await axios.get(`/api/${path}`);
+      console.log({ data });
+      data && router.push(data[0].content);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   console.log(router);
+
   return (
-    <div className={styles.navbar}>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        transition: { duration: 1 },
+      }}
+      className={styles.navbar}
+    >
       <div className={styles.nav__logo} onClick={() => router.push("/")}>
         Avo<span>Cado</span>
       </div>
@@ -37,20 +63,40 @@ const Navbar = () => {
         >
           Plan
         </div>
-        {/* <div
-          style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
+        <div
+          // style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
           className={styles.item}
-          onClick={() => router.push("/#plan")}
+          onClick={() => download("background")}
         >
           Background
         </div>
+
+        {userInfo?.isAdmin && (
+          <div
+            style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
+            className={styles.item}
+            onClick={() => setOpenBg(true)}
+          >
+            +
+          </div>
+        )}
+
         <div
-          style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
+          // style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
           className={styles.item}
-          onClick={() => router.push("/#plan")}
+          onClick={() => download("paymentmethod")}
         >
           Payment Method
-        </div> */}
+        </div>
+        {userInfo?.isAdmin && (
+          <div
+            style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
+            className={styles.item}
+            onClick={() => setOpenPayment(true)}
+          >
+            +
+          </div>
+        )}
         {/* <div
           style={{ color: `${router.asPath == "/#contact" ? "gold" : ""}` }}
           className={styles.item}
@@ -121,6 +167,7 @@ const Navbar = () => {
             <div className={styles.icon} onClick={() => setOpen(false)}>
               <ClearIcon />
             </div>
+
             <div
               style={{ color: `${router.asPath == "/" ? "gold" : ""}` }}
               className={styles.item}
@@ -142,13 +189,26 @@ const Navbar = () => {
             >
               Plan
             </div>
-            {/* <div
-              style={{ color: `${router.asPath == "/#contact" ? "gold" : ""}` }}
+            <div className={styles.item} onClick={() => download("background")}>
+              Background
+            </div>
+            {userInfo?.isAdmin && (
+              <div className={styles.item} onClick={() => setOpenBg(true)}>
+                BG+
+              </div>
+            )}
+
+            <div
               className={styles.item}
-              onClick={() => router.push("/#contact")}
+              onClick={() => download("paymentmethod")}
             >
-              Contact
-            </div> */}
+              Pyament Method
+            </div>
+            {userInfo?.isAdmin && (
+              <div className={styles.item} onClick={() => setOpenPayment(true)}>
+                PM+
+              </div>
+            )}
           </div>
 
           <div className={styles.nav__right}>
@@ -192,7 +252,19 @@ const Navbar = () => {
           </div>
         </div>
       )}
-    </div>
+
+      {openBg && (
+        <Term setOpen={setOpenBg} userInfo={userInfo} path="background" />
+      )}
+
+      {openPayment && (
+        <Term
+          setOpen={setOpenPayment}
+          userInfo={userInfo}
+          path="paymentmethod"
+        />
+      )}
+    </motion.div>
   );
 };
 

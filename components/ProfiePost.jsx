@@ -7,6 +7,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { motion } from "framer-motion";
 
 const ProfiePost = ({ userInfo }) => {
   const [error, setError] = useState("");
@@ -126,10 +127,9 @@ const ProfiePost = ({ userInfo }) => {
   useEffect(() => {
     fetch();
   }, [router.query.id]);
-  
 
   return (
-    <div className={styles.wrapper}>
+    <motion.div className={styles.wrapper}>
       <div className={styles.top}>
         {loading ? <>laoding...</> : <> Structure for you ({posts.length})</>}
         {userInfo?.isAdmin && (
@@ -166,8 +166,16 @@ const ProfiePost = ({ userInfo }) => {
 
       <div className={styles.posts}>
         {!loading ? (
+          posts.length > 0 &&
           posts.map((post) => (
-            <div className={styles.post}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: { duration: 0.5 },
+              }}
+              className={styles.post}
+            >
               {post.content && (
                 <Image src={post.content} width="400px" height="400px" />
               )}
@@ -176,7 +184,7 @@ const ProfiePost = ({ userInfo }) => {
                   <DeleteIcon onDoubleClick={() => handleDelete(post._id)} />
                 </div>
               )}
-            </div>
+            </motion.div>
           ))
         ) : (
           <div className={styles.loading}>
@@ -184,7 +192,7 @@ const ProfiePost = ({ userInfo }) => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

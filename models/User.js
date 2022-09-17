@@ -10,7 +10,10 @@ const userSchema = new mongoose.Schema(
     Nid: { type: String },
     Join: { type: String },
     // paymentHistory: { type: String },
-    picture: { type: String },
+    picture: {
+      type: String,
+      default: "https://cdn-icons-png.flaticon.com/512/3135/3135768.png",
+    },
     country: { type: String, required: true },
     revenue: { type: String },
     // teamMembers: { type: String },
