@@ -1,0 +1,34 @@
+.wrapper {
+  height: 10%;
+  padding: 10px;
+
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper textarea {
+  width: 100%;
+  height: 80%;
+  border-radius: 30px;
+  border: none;
+  color: black;
+  padding: 7px 10px;
+  resize: none;
+}
+
+.wrapper textarea::-webkit-scrollbar {
+  width: 0;
+}
+
+.wrapper .btn {
+  border-radius: 30px;
+  padding: 5px 15px;
+  background: blue;
+  margin-left: 10px;
+  height: 80%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

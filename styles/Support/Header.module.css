@@ -1,0 +1,30 @@
+.wrapper {
+  height: 10%;
+  padding: 10px;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  align-items: center;
+}
+
+.wrapper .left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow-x: scroll;
+  max-width: 93%;
+}
+
+.wrapper .left::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.wrapper .right {
+  border: 1px solid red;
+  color: red;
+  background-color: rgb(255, 0, 0, 0.2);
+  padding: 3px 8px;
+  border-radius: 50%;
+}

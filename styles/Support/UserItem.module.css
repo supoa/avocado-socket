@@ -1,0 +1,33 @@
+.wrapper {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px 20px 5px;
+
+  border: 1px solid rgb(255, 255, 255);
+  font-size: 80%;
+  min-width: 150px;
+  cursor: pointer;
+  position: relative;
+}
+
+.name {
+  padding-bottom: 5px;
+}
+
+.wrapper img {
+  border-radius: 50%;
+}
+
+.active__icon {
+  border: "1px solid green";
+  background: green;
+
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}

@@ -64,6 +64,13 @@ const Navbar = () => {
           Plan
         </div>
         <div
+          style={{ color: `${router.asPath == "/support" ? "gold" : ""}` }}
+          className={styles.item}
+          onClick={() => router.push("/support")}
+        >
+          Support
+        </div>
+        <div
           // style={{ color: `${router.asPath == "/#plan" ? "gold" : ""}` }}
           className={styles.item}
           onClick={() => download("background")}
@@ -213,6 +220,13 @@ const Navbar = () => {
               onClick={() => router.push("/#plan")}
             >
               Plan
+            </div>
+            <div
+              style={{ color: `${router.asPath == "/support" ? "gold" : ""}` }}
+              className={styles.item}
+              onClick={() => router.push("/support")}
+            >
+              Support
             </div>
             <div className={styles.item} onClick={() => download("background")}>
               Background

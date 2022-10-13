@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { store } from "../redux/store";
+import { SnackbarProvider } from "notistack";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -28,10 +29,13 @@ function MyApp({ Component, pageProps }) {
       <NextNProgress height={3} color="blue" />
 
       <ProgressBar />
+
       <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>{" "}
+        <SnackbarProvider maxSnack={3}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>{" "}
+        </SnackbarProvider>
       </Provider>
     </>
   );

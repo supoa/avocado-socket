@@ -69,7 +69,17 @@ const Table = ({ users }) => {
                   ) : (
                     <Image src="/avatar.png" width={30} height={30} alt="" />
                   )}
-                  <span>{user.name}</span>
+                  <span
+                    style={
+                      user.isAdmin
+                        ? {
+                            color: "red",
+                          }
+                        : {}
+                    }
+                  >
+                    {user.name}
+                  </span>
                 </td>
                 <td>{user.email}</td>
                 <td>{user.rank}</td>
